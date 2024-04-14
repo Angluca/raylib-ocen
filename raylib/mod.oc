@@ -1,0 +1,8 @@
+@compiler c_include "GLFW/glfw3.h"
+@compiler c_flag "-lglfw"
+//@compiler c_include "raylib.h"
+//@compiler c_flag "-lraylib"
+@compiler c_include "c/include/raylib.h"
+@compiler c_flag "-Lc/lib -lraylib"
+
+[export] import .raylib::*

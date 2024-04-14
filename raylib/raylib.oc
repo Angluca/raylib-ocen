@@ -1,0 +1,1136 @@
+[extern] const RAYLIB_VERSION_MAJOR: i32
+[extern] const RAYLIB_VERSION_MINOR: i32
+[extern] const RAYLIB_VERSION_PATCH: i32
+[extern] const RAYLIB_VERSION: str
+[extern] const PI: f32
+[extern] const DEG2RAD: f32
+[extern] const RAD2DEG: f32
+[extern] const LIGHTGRAY: Color
+[extern] const GRAY: Color
+[extern] const DARKGRAY: Color
+[extern] const YELLOW: Color
+[extern] const GOLD: Color
+[extern] const ORANGE: Color
+[extern] const PINK: Color
+[extern] const RED: Color
+[extern] const MAROON: Color
+[extern] const GREEN: Color
+[extern] const LIME: Color
+[extern] const DARKGREEN: Color
+[extern] const SKYBLUE: Color
+[extern] const BLUE: Color
+[extern] const DARKBLUE: Color
+[extern] const PURPLE: Color
+[extern] const VIOLET: Color
+[extern] const DARKPURPLE: Color
+[extern] const BEIGE: Color
+[extern] const BROWN: Color
+[extern] const DARKBROWN: Color
+[extern] const WHITE: Color
+[extern] const BLACK: Color
+[extern] const BLANK: Color
+[extern] const MAGENTA: Color
+[extern] const RAYWHITE: Color
+[extern] struct Vector2 {
+      x: f32
+      y: f32
+}
+[extern] struct Vector3 {
+      x: f32
+      y: f32
+      z: f32
+}
+[extern] struct Vector4 {
+      x: f32
+      y: f32
+      z: f32
+      w: f32
+}
+[extern] struct Matrix {
+      m0: f32
+      m4: f32
+      m8: f32
+      m12: f32
+      m1: f32
+      m5: f32
+      m9: f32
+      m13: f32
+      m2: f32
+      m6: f32
+      m10: f32
+      m14: f32
+      m3: f32
+      m7: f32
+      m11: f32
+      m15: f32
+}
+[extern] struct Color {
+      r: u8
+      g: u8
+      b: u8
+      a: u8
+}
+[extern] struct Rectangle {
+      x: f32
+      y: f32
+      width: f32
+      height: f32
+}
+[extern] struct Image {
+      data: untyped_ptr
+      width: i32
+      height: i32
+      mipmaps: i32
+      format: i32
+}
+[extern] struct Texture {
+      id: u32
+      width: i32
+      height: i32
+      mipmaps: i32
+      format: i32
+}
+[extern] struct RenderTexture {
+      id: u32
+      texture: Texture
+      depth: Texture
+}
+[extern] struct NPatchInfo {
+      source: Rectangle
+      left: i32
+      top: i32
+      right: i32
+      bottom: i32
+      layout: i32
+}
+[extern] struct GlyphInfo {
+      value: i32
+      offsetX: i32
+      offsetY: i32
+      advanceX: i32
+      image: Image
+}
+[extern] struct Font {
+      baseSize: i32
+      glyphCount: i32
+      glyphPadding: i32
+      texture: Texture2D
+      recs: &Rectangle
+      glyphs: &GlyphInfo
+}
+[extern] struct Camera3D {
+      position: Vector3
+      target: Vector3
+      up: Vector3
+      fovy: f32
+      projection: i32
+}
+[extern] struct Camera2D {
+      offset: Vector2
+      target: Vector2
+      rotation: f32
+      zoom: f32
+}
+[extern] struct Mesh {
+      vertexCount: i32
+      triangleCount: i32
+      vertices: &f32
+      texcoords: &f32
+      texcoords2: &f32
+      normals: &f32
+      tangents: &f32
+      colors: &u8
+      indices: &u16
+      animVertices: &f32
+      animNormals: &f32
+      boneIds: &u8
+      boneWeights: &f32
+      vaoId: u32
+      vboId: &u32
+}
+[extern] struct Shader {
+      id: u32
+      locs: &i32
+}
+[extern] struct MaterialMap {
+      texture: Texture2D
+      color: Color
+      value: f32
+}
+[extern] struct Material {
+      shader: Shader
+      maps: &MaterialMap
+      params: [f32; 4]
+}
+[extern] struct Transform {
+      translation: Vector3
+      rotation: Quaternion
+      scale: Vector3
+}
+[extern] struct BoneInfo {
+      name: [char; 32]
+      parent: i32
+}
+[extern] struct Model {
+      transform: Matrix
+      meshCount: i32
+      materialCount: i32
+      meshes: &Mesh
+      materials: &Material
+      meshMaterial: &i32
+      boneCount: i32
+      bones: &BoneInfo
+      bindPose: &Transform
+}
+[extern] struct ModelAnimation {
+      boneCount: i32
+      frameCount: i32
+      bones: &BoneInfo
+      framePoses: &Transform
+      name: [char; 32]
+}
+[extern] struct Ray {
+      position: Vector3
+      direction: Vector3
+}
+[extern] struct RayCollision {
+      hit: bool
+      distance: f32
+      point: Vector3
+      normal: Vector3
+}
+[extern] struct BoundingBox {
+      min: Vector3
+      max: Vector3
+}
+[extern] struct Wave {
+      frameCount: u32
+      sampleRate: u32
+      sampleSize: u32
+      channels: u32
+      data: untyped_ptr
+}
+[extern] struct AudioStream {
+      //buffer: &rAudioBuffer
+      //processor: &rAudioProcessor
+      //sampleRate: u32
+      //sampleSize: u32
+      //channels: u32
+}
+[extern] struct Sound {
+      stream: AudioStream
+      frameCount: u32
+}
+[extern] struct Music {
+      stream: AudioStream
+      frameCount: u32
+      looping: bool
+      ctxType: i32
+      ctxData: untyped_ptr
+}
+[extern] struct VrDeviceInfo {
+      hResolution: i32
+      vResolution: i32
+      hScreenSize: f32
+      vScreenSize: f32
+      eyeToScreenDistance: f32
+      lensSeparationDistance: f32
+      interpupillaryDistance: f32
+      lensDistortionValues: [f32; 4]
+      chromaAbCorrection: [f32; 4]
+}
+[extern] struct VrStereoConfig {
+      projection: [Matrix; 2]
+      viewOffset: [Matrix; 2]
+      leftLensCenter: [f32; 2]
+      rightLensCenter: [f32; 2]
+      leftScreenCenter: [f32; 2]
+      rightScreenCenter: [f32; 2]
+      scale: [f32; 2]
+      scaleIn: [f32; 2]
+}
+[extern] struct FilePathList {
+      capacity: u32
+      count: u32
+      paths: &char
+}
+[extern] struct AutomationEvent {
+      frame: u32
+      type: u32
+      params: [i32; 4]
+}
+[extern] struct AutomationEventList {
+      capacity: u32
+      count: u32
+      events: &AutomationEvent
+}
+typedef Quaternion = Vector4
+typedef Texture2D = Texture
+typedef TextureCubemap = Texture
+typedef RenderTexture2D = RenderTexture
+typedef Camera = Camera3D
+const FLAG_VSYNC_HINT: i32 = 64
+const FLAG_FULLSCREEN_MODE: i32 = 2
+const FLAG_WINDOW_RESIZABLE: i32 = 4
+const FLAG_WINDOW_UNDECORATED: i32 = 8
+const FLAG_WINDOW_HIDDEN: i32 = 128
+const FLAG_WINDOW_MINIMIZED: i32 = 512
+const FLAG_WINDOW_MAXIMIZED: i32 = 1024
+const FLAG_WINDOW_UNFOCUSED: i32 = 2048
+const FLAG_WINDOW_TOPMOST: i32 = 4096
+const FLAG_WINDOW_ALWAYS_RUN: i32 = 256
+const FLAG_WINDOW_TRANSPARENT: i32 = 16
+const FLAG_WINDOW_HIGHDPI: i32 = 8192
+const FLAG_WINDOW_MOUSE_PASSTHROUGH: i32 = 16384
+const FLAG_BORDERLESS_WINDOWED_MODE: i32 = 32768
+const FLAG_MSAA_4X_HINT: i32 = 32
+const FLAG_INTERLACED_HINT: i32 = 65536
+const LOG_ALL: i32 = 0
+const LOG_TRACE: i32 = 1
+const LOG_DEBUG: i32 = 2
+const LOG_INFO: i32 = 3
+const LOG_WARNING: i32 = 4
+const LOG_ERROR: i32 = 5
+const LOG_FATAL: i32 = 6
+const LOG_NONE: i32 = 7
+const KEY_NULL: i32 = 0
+const KEY_APOSTROPHE: i32 = 39
+const KEY_COMMA: i32 = 44
+const KEY_MINUS: i32 = 45
+const KEY_PERIOD: i32 = 46
+const KEY_SLASH: i32 = 47
+const KEY_ZERO: i32 = 48
+const KEY_ONE: i32 = 49
+const KEY_TWO: i32 = 50
+const KEY_THREE: i32 = 51
+const KEY_FOUR: i32 = 52
+const KEY_FIVE: i32 = 53
+const KEY_SIX: i32 = 54
+const KEY_SEVEN: i32 = 55
+const KEY_EIGHT: i32 = 56
+const KEY_NINE: i32 = 57
+const KEY_SEMICOLON: i32 = 59
+const KEY_EQUAL: i32 = 61
+const KEY_A: i32 = 65
+const KEY_B: i32 = 66
+const KEY_C: i32 = 67
+const KEY_D: i32 = 68
+const KEY_E: i32 = 69
+const KEY_F: i32 = 70
+const KEY_G: i32 = 71
+const KEY_H: i32 = 72
+const KEY_I: i32 = 73
+const KEY_J: i32 = 74
+const KEY_K: i32 = 75
+const KEY_L: i32 = 76
+const KEY_M: i32 = 77
+const KEY_N: i32 = 78
+const KEY_O: i32 = 79
+const KEY_P: i32 = 80
+const KEY_Q: i32 = 81
+const KEY_R: i32 = 82
+const KEY_S: i32 = 83
+const KEY_T: i32 = 84
+const KEY_U: i32 = 85
+const KEY_V: i32 = 86
+const KEY_W: i32 = 87
+const KEY_X: i32 = 88
+const KEY_Y: i32 = 89
+const KEY_Z: i32 = 90
+const KEY_LEFT_BRACKET: i32 = 91
+const KEY_BACKSLASH: i32 = 92
+const KEY_RIGHT_BRACKET: i32 = 93
+const KEY_GRAVE: i32 = 96
+const KEY_SPACE: i32 = 32
+const KEY_ESCAPE: i32 = 256
+const KEY_ENTER: i32 = 257
+const KEY_TAB: i32 = 258
+const KEY_BACKSPACE: i32 = 259
+const KEY_INSERT: i32 = 260
+const KEY_DELETE: i32 = 261
+const KEY_RIGHT: i32 = 262
+const KEY_LEFT: i32 = 263
+const KEY_DOWN: i32 = 264
+const KEY_UP: i32 = 265
+const KEY_PAGE_UP: i32 = 266
+const KEY_PAGE_DOWN: i32 = 267
+const KEY_HOME: i32 = 268
+const KEY_END: i32 = 269
+const KEY_CAPS_LOCK: i32 = 280
+const KEY_SCROLL_LOCK: i32 = 281
+const KEY_NUM_LOCK: i32 = 282
+const KEY_PRINT_SCREEN: i32 = 283
+const KEY_PAUSE: i32 = 284
+const KEY_F1: i32 = 290
+const KEY_F2: i32 = 291
+const KEY_F3: i32 = 292
+const KEY_F4: i32 = 293
+const KEY_F5: i32 = 294
+const KEY_F6: i32 = 295
+const KEY_F7: i32 = 296
+const KEY_F8: i32 = 297
+const KEY_F9: i32 = 298
+const KEY_F10: i32 = 299
+const KEY_F11: i32 = 300
+const KEY_F12: i32 = 301
+const KEY_LEFT_SHIFT: i32 = 340
+const KEY_LEFT_CONTROL: i32 = 341
+const KEY_LEFT_ALT: i32 = 342
+const KEY_LEFT_SUPER: i32 = 343
+const KEY_RIGHT_SHIFT: i32 = 344
+const KEY_RIGHT_CONTROL: i32 = 345
+const KEY_RIGHT_ALT: i32 = 346
+const KEY_RIGHT_SUPER: i32 = 347
+const KEY_KB_MENU: i32 = 348
+const KEY_KP_0: i32 = 320
+const KEY_KP_1: i32 = 321
+const KEY_KP_2: i32 = 322
+const KEY_KP_3: i32 = 323
+const KEY_KP_4: i32 = 324
+const KEY_KP_5: i32 = 325
+const KEY_KP_6: i32 = 326
+const KEY_KP_7: i32 = 327
+const KEY_KP_8: i32 = 328
+const KEY_KP_9: i32 = 329
+const KEY_KP_DECIMAL: i32 = 330
+const KEY_KP_DIVIDE: i32 = 331
+const KEY_KP_MULTIPLY: i32 = 332
+const KEY_KP_SUBTRACT: i32 = 333
+const KEY_KP_ADD: i32 = 334
+const KEY_KP_ENTER: i32 = 335
+const KEY_KP_EQUAL: i32 = 336
+const KEY_BACK: i32 = 4
+const KEY_MENU: i32 = 5
+const KEY_VOLUME_UP: i32 = 24
+const KEY_VOLUME_DOWN: i32 = 25
+const MOUSE_BUTTON_LEFT: i32 = 0
+const MOUSE_BUTTON_RIGHT: i32 = 1
+const MOUSE_BUTTON_MIDDLE: i32 = 2
+const MOUSE_BUTTON_SIDE: i32 = 3
+const MOUSE_BUTTON_EXTRA: i32 = 4
+const MOUSE_BUTTON_FORWARD: i32 = 5
+const MOUSE_BUTTON_BACK: i32 = 6
+const MOUSE_CURSOR_DEFAULT: i32 = 0
+const MOUSE_CURSOR_ARROW: i32 = 1
+const MOUSE_CURSOR_IBEAM: i32 = 2
+const MOUSE_CURSOR_CROSSHAIR: i32 = 3
+const MOUSE_CURSOR_POINTING_HAND: i32 = 4
+const MOUSE_CURSOR_RESIZE_EW: i32 = 5
+const MOUSE_CURSOR_RESIZE_NS: i32 = 6
+const MOUSE_CURSOR_RESIZE_NWSE: i32 = 7
+const MOUSE_CURSOR_RESIZE_NESW: i32 = 8
+const MOUSE_CURSOR_RESIZE_ALL: i32 = 9
+const MOUSE_CURSOR_NOT_ALLOWED: i32 = 10
+const GAMEPAD_BUTTON_UNKNOWN: i32 = 0
+const GAMEPAD_BUTTON_LEFT_FACE_UP: i32 = 1
+const GAMEPAD_BUTTON_LEFT_FACE_RIGHT: i32 = 2
+const GAMEPAD_BUTTON_LEFT_FACE_DOWN: i32 = 3
+const GAMEPAD_BUTTON_LEFT_FACE_LEFT: i32 = 4
+const GAMEPAD_BUTTON_RIGHT_FACE_UP: i32 = 5
+const GAMEPAD_BUTTON_RIGHT_FACE_RIGHT: i32 = 6
+const GAMEPAD_BUTTON_RIGHT_FACE_DOWN: i32 = 7
+const GAMEPAD_BUTTON_RIGHT_FACE_LEFT: i32 = 8
+const GAMEPAD_BUTTON_LEFT_TRIGGER_1: i32 = 9
+const GAMEPAD_BUTTON_LEFT_TRIGGER_2: i32 = 10
+const GAMEPAD_BUTTON_RIGHT_TRIGGER_1: i32 = 11
+const GAMEPAD_BUTTON_RIGHT_TRIGGER_2: i32 = 12
+const GAMEPAD_BUTTON_MIDDLE_LEFT: i32 = 13
+const GAMEPAD_BUTTON_MIDDLE: i32 = 14
+const GAMEPAD_BUTTON_MIDDLE_RIGHT: i32 = 15
+const GAMEPAD_BUTTON_LEFT_THUMB: i32 = 16
+const GAMEPAD_BUTTON_RIGHT_THUMB: i32 = 17
+const GAMEPAD_AXIS_LEFT_X: i32 = 0
+const GAMEPAD_AXIS_LEFT_Y: i32 = 1
+const GAMEPAD_AXIS_RIGHT_X: i32 = 2
+const GAMEPAD_AXIS_RIGHT_Y: i32 = 3
+const GAMEPAD_AXIS_LEFT_TRIGGER: i32 = 4
+const GAMEPAD_AXIS_RIGHT_TRIGGER: i32 = 5
+const MATERIAL_MAP_ALBEDO: i32 = 0
+const MATERIAL_MAP_METALNESS: i32 = 1
+const MATERIAL_MAP_NORMAL: i32 = 2
+const MATERIAL_MAP_ROUGHNESS: i32 = 3
+const MATERIAL_MAP_OCCLUSION: i32 = 4
+const MATERIAL_MAP_EMISSION: i32 = 5
+const MATERIAL_MAP_HEIGHT: i32 = 6
+const MATERIAL_MAP_CUBEMAP: i32 = 7
+const MATERIAL_MAP_IRRADIANCE: i32 = 8
+const MATERIAL_MAP_PREFILTER: i32 = 9
+const MATERIAL_MAP_BRDF: i32 = 10
+const SHADER_LOC_VERTEX_POSITION: i32 = 0
+const SHADER_LOC_VERTEX_TEXCOORD01: i32 = 1
+const SHADER_LOC_VERTEX_TEXCOORD02: i32 = 2
+const SHADER_LOC_VERTEX_NORMAL: i32 = 3
+const SHADER_LOC_VERTEX_TANGENT: i32 = 4
+const SHADER_LOC_VERTEX_COLOR: i32 = 5
+const SHADER_LOC_MATRIX_MVP: i32 = 6
+const SHADER_LOC_MATRIX_VIEW: i32 = 7
+const SHADER_LOC_MATRIX_PROJECTION: i32 = 8
+const SHADER_LOC_MATRIX_MODEL: i32 = 9
+const SHADER_LOC_MATRIX_NORMAL: i32 = 10
+const SHADER_LOC_VECTOR_VIEW: i32 = 11
+const SHADER_LOC_COLOR_DIFFUSE: i32 = 12
+const SHADER_LOC_COLOR_SPECULAR: i32 = 13
+const SHADER_LOC_COLOR_AMBIENT: i32 = 14
+const SHADER_LOC_MAP_ALBEDO: i32 = 15
+const SHADER_LOC_MAP_METALNESS: i32 = 16
+const SHADER_LOC_MAP_NORMAL: i32 = 17
+const SHADER_LOC_MAP_ROUGHNESS: i32 = 18
+const SHADER_LOC_MAP_OCCLUSION: i32 = 19
+const SHADER_LOC_MAP_EMISSION: i32 = 20
+const SHADER_LOC_MAP_HEIGHT: i32 = 21
+const SHADER_LOC_MAP_CUBEMAP: i32 = 22
+const SHADER_LOC_MAP_IRRADIANCE: i32 = 23
+const SHADER_LOC_MAP_PREFILTER: i32 = 24
+const SHADER_LOC_MAP_BRDF: i32 = 25
+const SHADER_UNIFORM_FLOAT: i32 = 0
+const SHADER_UNIFORM_VEC2: i32 = 1
+const SHADER_UNIFORM_VEC3: i32 = 2
+const SHADER_UNIFORM_VEC4: i32 = 3
+const SHADER_UNIFORM_INT: i32 = 4
+const SHADER_UNIFORM_IVEC2: i32 = 5
+const SHADER_UNIFORM_IVEC3: i32 = 6
+const SHADER_UNIFORM_IVEC4: i32 = 7
+const SHADER_UNIFORM_SAMPLER2D: i32 = 8
+const SHADER_ATTRIB_FLOAT: i32 = 0
+const SHADER_ATTRIB_VEC2: i32 = 1
+const SHADER_ATTRIB_VEC3: i32 = 2
+const SHADER_ATTRIB_VEC4: i32 = 3
+const PIXELFORMAT_UNCOMPRESSED_GRAYSCALE: i32 = 1
+const PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA: i32 = 2
+const PIXELFORMAT_UNCOMPRESSED_R5G6B5: i32 = 3
+const PIXELFORMAT_UNCOMPRESSED_R8G8B8: i32 = 4
+const PIXELFORMAT_UNCOMPRESSED_R5G5B5A1: i32 = 5
+const PIXELFORMAT_UNCOMPRESSED_R4G4B4A4: i32 = 6
+const PIXELFORMAT_UNCOMPRESSED_R8G8B8A8: i32 = 7
+const PIXELFORMAT_UNCOMPRESSED_R32: i32 = 8
+const PIXELFORMAT_UNCOMPRESSED_R32G32B32: i32 = 9
+const PIXELFORMAT_UNCOMPRESSED_R32G32B32A32: i32 = 10
+const PIXELFORMAT_UNCOMPRESSED_R16: i32 = 11
+const PIXELFORMAT_UNCOMPRESSED_R16G16B16: i32 = 12
+const PIXELFORMAT_UNCOMPRESSED_R16G16B16A16: i32 = 13
+const PIXELFORMAT_COMPRESSED_DXT1_RGB: i32 = 14
+const PIXELFORMAT_COMPRESSED_DXT1_RGBA: i32 = 15
+const PIXELFORMAT_COMPRESSED_DXT3_RGBA: i32 = 16
+const PIXELFORMAT_COMPRESSED_DXT5_RGBA: i32 = 17
+const PIXELFORMAT_COMPRESSED_ETC1_RGB: i32 = 18
+const PIXELFORMAT_COMPRESSED_ETC2_RGB: i32 = 19
+const PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA: i32 = 20
+const PIXELFORMAT_COMPRESSED_PVRT_RGB: i32 = 21
+const PIXELFORMAT_COMPRESSED_PVRT_RGBA: i32 = 22
+const PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA: i32 = 23
+const PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA: i32 = 24
+const TEXTURE_FILTER_POINT: i32 = 0
+const TEXTURE_FILTER_BILINEAR: i32 = 1
+const TEXTURE_FILTER_TRILINEAR: i32 = 2
+const TEXTURE_FILTER_ANISOTROPIC_4X: i32 = 3
+const TEXTURE_FILTER_ANISOTROPIC_8X: i32 = 4
+const TEXTURE_FILTER_ANISOTROPIC_16X: i32 = 5
+const TEXTURE_WRAP_REPEAT: i32 = 0
+const TEXTURE_WRAP_CLAMP: i32 = 1
+const TEXTURE_WRAP_MIRROR_REPEAT: i32 = 2
+const TEXTURE_WRAP_MIRROR_CLAMP: i32 = 3
+const CUBEMAP_LAYOUT_AUTO_DETECT: i32 = 0
+const CUBEMAP_LAYOUT_LINE_VERTICAL: i32 = 1
+const CUBEMAP_LAYOUT_LINE_HORIZONTAL: i32 = 2
+const CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR: i32 = 3
+const CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE: i32 = 4
+const CUBEMAP_LAYOUT_PANORAMA: i32 = 5
+const FONT_DEFAULT: i32 = 0
+const FONT_BITMAP: i32 = 1
+const FONT_SDF: i32 = 2
+const BLEND_ALPHA: i32 = 0
+const BLEND_ADDITIVE: i32 = 1
+const BLEND_MULTIPLIED: i32 = 2
+const BLEND_ADD_COLORS: i32 = 3
+const BLEND_SUBTRACT_COLORS: i32 = 4
+const BLEND_ALPHA_PREMULTIPLY: i32 = 5
+const BLEND_CUSTOM: i32 = 6
+const BLEND_CUSTOM_SEPARATE: i32 = 7
+const GESTURE_NONE: i32 = 0
+const GESTURE_TAP: i32 = 1
+const GESTURE_DOUBLETAP: i32 = 2
+const GESTURE_HOLD: i32 = 4
+const GESTURE_DRAG: i32 = 8
+const GESTURE_SWIPE_RIGHT: i32 = 16
+const GESTURE_SWIPE_LEFT: i32 = 32
+const GESTURE_SWIPE_UP: i32 = 64
+const GESTURE_SWIPE_DOWN: i32 = 128
+const GESTURE_PINCH_IN: i32 = 256
+const GESTURE_PINCH_OUT: i32 = 512
+const CAMERA_CUSTOM: i32 = 0
+const CAMERA_FREE: i32 = 1
+const CAMERA_ORBITAL: i32 = 2
+const CAMERA_FIRST_PERSON: i32 = 3
+const CAMERA_THIRD_PERSON: i32 = 4
+const CAMERA_PERSPECTIVE: i32 = 0
+const CAMERA_ORTHOGRAPHIC: i32 = 1
+const NPATCH_NINE_PATCH: i32 = 0
+const NPATCH_THREE_PATCH_VERTICAL: i32 = 1
+const NPATCH_THREE_PATCH_HORIZONTAL: i32 = 2
+typedef TraceLogCallback = fn(i32, &char, ...): u8
+typedef LoadFileDataCallback = fn(&char, &i32): &u8
+typedef SaveFileDataCallback = fn(&char, untyped_ptr, i32): bool
+typedef LoadFileTextCallback = fn(&char): &char
+typedef SaveFileTextCallback = fn(&char, &char): bool
+typedef AudioCallback = fn(untyped_ptr, u32): u8
+[extern] def InitWindow(width: i32, height: i32, title: &char): u8
+[extern] def CloseWindow(): u8
+[extern] def WindowShouldClose(): bool
+[extern] def IsWindowReady(): bool
+[extern] def IsWindowFullscreen(): bool
+[extern] def IsWindowHidden(): bool
+[extern] def IsWindowMinimized(): bool
+[extern] def IsWindowMaximized(): bool
+[extern] def IsWindowFocused(): bool
+[extern] def IsWindowResized(): bool
+[extern] def IsWindowState(flag: u32): bool
+[extern] def SetWindowState(flags: u32): u8
+[extern] def ClearWindowState(flags: u32): u8
+[extern] def ToggleFullscreen(): u8
+[extern] def ToggleBorderlessWindowed(): u8
+[extern] def MaximizeWindow(): u8
+[extern] def MinimizeWindow(): u8
+[extern] def RestoreWindow(): u8
+[extern] def SetWindowIcon(image: Image): u8
+[extern] def SetWindowIcons(images: &Image, count: i32): u8
+[extern] def SetWindowTitle(title: &char): u8
+[extern] def SetWindowPosition(x: i32, y: i32): u8
+[extern] def SetWindowMonitor(monitor: i32): u8
+[extern] def SetWindowMinSize(width: i32, height: i32): u8
+[extern] def SetWindowMaxSize(width: i32, height: i32): u8
+[extern] def SetWindowSize(width: i32, height: i32): u8
+[extern] def SetWindowOpacity(opacity: f32): u8
+[extern] def SetWindowFocused(): u8
+[extern] def GetWindowHandle(): untyped_ptr
+[extern] def GetScreenWidth(): i32
+[extern] def GetScreenHeight(): i32
+[extern] def GetRenderWidth(): i32
+[extern] def GetRenderHeight(): i32
+[extern] def GetMonitorCount(): i32
+[extern] def GetCurrentMonitor(): i32
+[extern] def GetMonitorPosition(monitor: i32): Vector2
+[extern] def GetMonitorWidth(monitor: i32): i32
+[extern] def GetMonitorHeight(monitor: i32): i32
+[extern] def GetMonitorPhysicalWidth(monitor: i32): i32
+[extern] def GetMonitorPhysicalHeight(monitor: i32): i32
+[extern] def GetMonitorRefreshRate(monitor: i32): i32
+[extern] def GetWindowPosition(): Vector2
+[extern] def GetWindowScaleDPI(): Vector2
+[extern] def GetMonitorName(monitor: i32): &char
+[extern] def SetClipboardText(text: &char): u8
+[extern] def GetClipboardText(): &char
+[extern] def EnableEventWaiting(): u8
+[extern] def DisableEventWaiting(): u8
+[extern] def ShowCursor(): u8
+[extern] def HideCursor(): u8
+[extern] def IsCursorHidden(): bool
+[extern] def EnableCursor(): u8
+[extern] def DisableCursor(): u8
+[extern] def IsCursorOnScreen(): bool
+[extern] def ClearBackground(color: Color): u8
+[extern] def BeginDrawing(): u8
+[extern] def EndDrawing(): u8
+[extern] def BeginMode2D(camera: Camera2D): u8
+[extern] def EndMode2D(): u8
+[extern] def BeginMode3D(camera: Camera3D): u8
+[extern] def EndMode3D(): u8
+[extern] def BeginTextureMode(target: RenderTexture2D): u8
+[extern] def EndTextureMode(): u8
+[extern] def BeginShaderMode(shader: Shader): u8
+[extern] def EndShaderMode(): u8
+[extern] def BeginBlendMode(mode: i32): u8
+[extern] def EndBlendMode(): u8
+[extern] def BeginScissorMode(x: i32, y: i32, width: i32, height: i32): u8
+[extern] def EndScissorMode(): u8
+[extern] def BeginVrStereoMode(config: VrStereoConfig): u8
+[extern] def EndVrStereoMode(): u8
+[extern] def LoadVrStereoConfig(device: VrDeviceInfo): VrStereoConfig
+[extern] def UnloadVrStereoConfig(config: VrStereoConfig): u8
+[extern] def LoadShader(vsFileName: &char, fsFileName: &char): Shader
+[extern] def LoadShaderFromMemory(vsCode: &char, fsCode: &char): Shader
+[extern] def IsShaderReady(shader: Shader): bool
+[extern] def GetShaderLocation(shader: Shader, uniformName: &char): i32
+[extern] def GetShaderLocationAttrib(shader: Shader, attribName: &char): i32
+[extern] def SetShaderValue(shader: Shader, locIndex: i32, value: untyped_ptr, uniformType: i32): u8
+[extern] def SetShaderValueV(shader: Shader, locIndex: i32, value: untyped_ptr, uniformType: i32, count: i32): u8
+[extern] def SetShaderValueMatrix(shader: Shader, locIndex: i32, mat: Matrix): u8
+[extern] def SetShaderValueTexture(shader: Shader, locIndex: i32, texture: Texture2D): u8
+[extern] def UnloadShader(shader: Shader): u8
+[extern] def GetScreenToWorldRay(position: Vector2, camera: Camera): Ray
+[extern] def GetScreenToWorldRayEx(position: Vector2, camera: Camera, width: i32, height: i32): Ray
+[extern] def GetWorldToScreen(position: Vector3, camera: Camera): Vector2
+[extern] def GetWorldToScreenEx(position: Vector3, camera: Camera, width: i32, height: i32): Vector2
+[extern] def GetWorldToScreen2D(position: Vector2, camera: Camera2D): Vector2
+[extern] def GetScreenToWorld2D(position: Vector2, camera: Camera2D): Vector2
+[extern] def GetCameraMatrix(camera: Camera): Matrix
+[extern] def GetCameraMatrix2D(camera: Camera2D): Matrix
+[extern] def SetTargetFPS(fps: i32): u8
+[extern] def GetFrameTime(): f32
+[extern] def GetTime(): f64
+[extern] def GetFPS(): i32
+[extern] def SwapScreenBuffer(): u8
+[extern] def PollInputEvents(): u8
+[extern] def WaitTime(seconds: f64): u8
+[extern] def SetRandomSeed(seed: u32): u8
+[extern] def GetRandomValue(min: i32, max: i32): i32
+[extern] def LoadRandomSequence(count: u32, min: i32, max: i32): &i32
+[extern] def UnloadRandomSequence(sequence: &i32): u8
+[extern] def TakeScreenshot(fileName: &char): u8
+[extern] def SetConfigFlags(flags: u32): u8
+[extern] def OpenURL(url: &char): u8
+[extern] def TraceLog(logLevel: i32, text: &char, ...): u8
+[extern] def SetTraceLogLevel(logLevel: i32): u8
+[extern] def MemAlloc(size: u32): untyped_ptr
+[extern] def MemRealloc(ptr: untyped_ptr, size: u32): untyped_ptr
+[extern] def MemFree(ptr: untyped_ptr): u8
+[extern] def SetTraceLogCallback(callback: TraceLogCallback): u8
+[extern] def SetLoadFileDataCallback(callback: LoadFileDataCallback): u8
+[extern] def SetSaveFileDataCallback(callback: SaveFileDataCallback): u8
+[extern] def SetLoadFileTextCallback(callback: LoadFileTextCallback): u8
+[extern] def SetSaveFileTextCallback(callback: SaveFileTextCallback): u8
+[extern] def LoadFileData(fileName: &char, dataSize: &i32): &u8
+[extern] def UnloadFileData(data: &u8): u8
+[extern] def SaveFileData(fileName: &char, data: untyped_ptr, dataSize: i32): bool
+[extern] def ExportDataAsCode(data: &u8, dataSize: i32, fileName: &char): bool
+[extern] def LoadFileText(fileName: &char): &char
+[extern] def UnloadFileText(text: &char): u8
+[extern] def SaveFileText(fileName: &char, text: &char): bool
+[extern] def FileExists(fileName: &char): bool
+[extern] def DirectoryExists(dirPath: &char): bool
+[extern] def IsFileExtension(fileName: &char, ext: &char): bool
+[extern] def GetFileLength(fileName: &char): i32
+[extern] def GetFileExtension(fileName: &char): &char
+[extern] def GetFileName(filePath: &char): &char
+[extern] def GetFileNameWithoutExt(filePath: &char): &char
+[extern] def GetDirectoryPath(filePath: &char): &char
+[extern] def GetPrevDirectoryPath(dirPath: &char): &char
+[extern] def GetWorkingDirectory(): &char
+[extern] def GetApplicationDirectory(): &char
+[extern] def ChangeDirectory(dir: &char): bool
+[extern] def IsPathFile(path: &char): bool
+[extern] def LoadDirectoryFiles(dirPath: &char): FilePathList
+[extern] def LoadDirectoryFilesEx(basePath: &char, filter: &char, scanSubdirs: bool): FilePathList
+[extern] def UnloadDirectoryFiles(files: FilePathList): u8
+[extern] def IsFileDropped(): bool
+[extern] def LoadDroppedFiles(): FilePathList
+[extern] def UnloadDroppedFiles(files: FilePathList): u8
+[extern] def GetFileModTime(fileName: &char): i32
+[extern] def CompressData(data: &u8, dataSize: i32, compDataSize: &i32): &u8
+[extern] def DecompressData(compData: &u8, compDataSize: i32, dataSize: &i32): &u8
+[extern] def EncodeDataBase64(data: &u8, dataSize: i32, outputSize: &i32): &char
+[extern] def DecodeDataBase64(data: &u8, outputSize: &i32): &u8
+[extern] def LoadAutomationEventList(fileName: &char): AutomationEventList
+[extern] def UnloadAutomationEventList(list: AutomationEventList): u8
+[extern] def ExportAutomationEventList(list: AutomationEventList, fileName: &char): bool
+[extern] def SetAutomationEventList(list: &AutomationEventList): u8
+[extern] def SetAutomationEventBaseFrame(frame: i32): u8
+[extern] def StartAutomationEventRecording(): u8
+[extern] def StopAutomationEventRecording(): u8
+[extern] def PlayAutomationEvent(event: AutomationEvent): u8
+[extern] def IsKeyPressed(key: i32): bool
+[extern] def IsKeyPressedRepeat(key: i32): bool
+[extern] def IsKeyDown(key: i32): bool
+[extern] def IsKeyReleased(key: i32): bool
+[extern] def IsKeyUp(key: i32): bool
+[extern] def GetKeyPressed(): i32
+[extern] def GetCharPressed(): i32
+[extern] def SetExitKey(key: i32): u8
+[extern] def IsGamepadAvailable(gamepad: i32): bool
+[extern] def GetGamepadName(gamepad: i32): &char
+[extern] def IsGamepadButtonPressed(gamepad: i32, button: i32): bool
+[extern] def IsGamepadButtonDown(gamepad: i32, button: i32): bool
+[extern] def IsGamepadButtonReleased(gamepad: i32, button: i32): bool
+[extern] def IsGamepadButtonUp(gamepad: i32, button: i32): bool
+[extern] def GetGamepadButtonPressed(): i32
+[extern] def GetGamepadAxisCount(gamepad: i32): i32
+[extern] def GetGamepadAxisMovement(gamepad: i32, axis: i32): f32
+[extern] def SetGamepadMappings(mappings: &char): i32
+[extern] def SetGamepadVibration(gamepad: i32, leftMotor: f32, rightMotor: f32): u8
+[extern] def IsMouseButtonPressed(button: i32): bool
+[extern] def IsMouseButtonDown(button: i32): bool
+[extern] def IsMouseButtonReleased(button: i32): bool
+[extern] def IsMouseButtonUp(button: i32): bool
+[extern] def GetMouseX(): i32
+[extern] def GetMouseY(): i32
+[extern] def GetMousePosition(): Vector2
+[extern] def GetMouseDelta(): Vector2
+[extern] def SetMousePosition(x: i32, y: i32): u8
+[extern] def SetMouseOffset(offsetX: i32, offsetY: i32): u8
+[extern] def SetMouseScale(scaleX: f32, scaleY: f32): u8
+[extern] def GetMouseWheelMove(): f32
+[extern] def GetMouseWheelMoveV(): Vector2
+[extern] def SetMouseCursor(cursor: i32): u8
+[extern] def GetTouchX(): i32
+[extern] def GetTouchY(): i32
+[extern] def GetTouchPosition(index: i32): Vector2
+[extern] def GetTouchPointId(index: i32): i32
+[extern] def GetTouchPointCount(): i32
+[extern] def SetGesturesEnabled(flags: u32): u8
+[extern] def IsGestureDetected(gesture: u32): bool
+[extern] def GetGestureDetected(): i32
+[extern] def GetGestureHoldDuration(): f32
+[extern] def GetGestureDragVector(): Vector2
+[extern] def GetGestureDragAngle(): f32
+[extern] def GetGesturePinchVector(): Vector2
+[extern] def GetGesturePinchAngle(): f32
+[extern] def UpdateCamera(camera: &Camera, mode: i32): u8
+[extern] def UpdateCameraPro(camera: &Camera, movement: Vector3, rotation: Vector3, zoom: f32): u8
+[extern] def SetShapesTexture(texture: Texture2D, source: Rectangle): u8
+[extern] def GetShapesTexture(): Texture2D
+[extern] def GetShapesTextureRectangle(): Rectangle
+[extern] def DrawPixel(posX: i32, posY: i32, color: Color): u8
+[extern] def DrawPixelV(position: Vector2, color: Color): u8
+[extern] def DrawLine(startPosX: i32, startPosY: i32, endPosX: i32, endPosY: i32, color: Color): u8
+[extern] def DrawLineV(startPos: Vector2, endPos: Vector2, color: Color): u8
+[extern] def DrawLineEx(startPos: Vector2, endPos: Vector2, thick: f32, color: Color): u8
+[extern] def DrawLineStrip(points: &Vector2, pointCount: i32, color: Color): u8
+[extern] def DrawLineBezier(startPos: Vector2, endPos: Vector2, thick: f32, color: Color): u8
+[extern] def DrawCircle(centerX: i32, centerY: i32, radius: f32, color: Color): u8
+[extern] def DrawCircleSector(center: Vector2, radius: f32, startAngle: f32, endAngle: f32, segments: i32, color: Color): u8
+[extern] def DrawCircleSectorLines(center: Vector2, radius: f32, startAngle: f32, endAngle: f32, segments: i32, color: Color): u8
+[extern] def DrawCircleGradient(centerX: i32, centerY: i32, radius: f32, color1: Color, color2: Color): u8
+[extern] def DrawCircleV(center: Vector2, radius: f32, color: Color): u8
+[extern] def DrawCircleLines(centerX: i32, centerY: i32, radius: f32, color: Color): u8
+[extern] def DrawCircleLinesV(center: Vector2, radius: f32, color: Color): u8
+[extern] def DrawEllipse(centerX: i32, centerY: i32, radiusH: f32, radiusV: f32, color: Color): u8
+[extern] def DrawEllipseLines(centerX: i32, centerY: i32, radiusH: f32, radiusV: f32, color: Color): u8
+[extern] def DrawRing(center: Vector2, innerRadius: f32, outerRadius: f32, startAngle: f32, endAngle: f32, segments: i32, color: Color): u8
+[extern] def DrawRingLines(center: Vector2, innerRadius: f32, outerRadius: f32, startAngle: f32, endAngle: f32, segments: i32, color: Color): u8
+[extern] def DrawRectangle(posX: i32, posY: i32, width: i32, height: i32, color: Color): u8
+[extern] def DrawRectangleV(position: Vector2, size: Vector2, color: Color): u8
+[extern] def DrawRectangleRec(rec: Rectangle, color: Color): u8
+[extern] def DrawRectanglePro(rec: Rectangle, origin: Vector2, rotation: f32, color: Color): u8
+[extern] def DrawRectangleGradientV(posX: i32, posY: i32, width: i32, height: i32, color1: Color, color2: Color): u8
+[extern] def DrawRectangleGradientH(posX: i32, posY: i32, width: i32, height: i32, color1: Color, color2: Color): u8
+[extern] def DrawRectangleGradientEx(rec: Rectangle, col1: Color, col2: Color, col3: Color, col4: Color): u8
+[extern] def DrawRectangleLines(posX: i32, posY: i32, width: i32, height: i32, color: Color): u8
+[extern] def DrawRectangleLinesEx(rec: Rectangle, lineThick: f32, color: Color): u8
+[extern] def DrawRectangleRounded(rec: Rectangle, roundness: f32, segments: i32, color: Color): u8
+[extern] def DrawRectangleRoundedLines(rec: Rectangle, roundness: f32, segments: i32, lineThick: f32, color: Color): u8
+[extern] def DrawTriangle(v1: Vector2, v2: Vector2, v3: Vector2, color: Color): u8
+[extern] def DrawTriangleLines(v1: Vector2, v2: Vector2, v3: Vector2, color: Color): u8
+[extern] def DrawTriangleFan(points: &Vector2, pointCount: i32, color: Color): u8
+[extern] def DrawTriangleStrip(points: &Vector2, pointCount: i32, color: Color): u8
+[extern] def DrawPoly(center: Vector2, sides: i32, radius: f32, rotation: f32, color: Color): u8
+[extern] def DrawPolyLines(center: Vector2, sides: i32, radius: f32, rotation: f32, color: Color): u8
+[extern] def DrawPolyLinesEx(center: Vector2, sides: i32, radius: f32, rotation: f32, lineThick: f32, color: Color): u8
+[extern] def DrawSplineLinear(points: &Vector2, pointCount: i32, thick: f32, color: Color): u8
+[extern] def DrawSplineBasis(points: &Vector2, pointCount: i32, thick: f32, color: Color): u8
+[extern] def DrawSplineCatmullRom(points: &Vector2, pointCount: i32, thick: f32, color: Color): u8
+[extern] def DrawSplineBezierQuadratic(points: &Vector2, pointCount: i32, thick: f32, color: Color): u8
+[extern] def DrawSplineBezierCubic(points: &Vector2, pointCount: i32, thick: f32, color: Color): u8
+[extern] def DrawSplineSegmentLinear(p1: Vector2, p2: Vector2, thick: f32, color: Color): u8
+[extern] def DrawSplineSegmentBasis(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, thick: f32, color: Color): u8
+[extern] def DrawSplineSegmentCatmullRom(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, thick: f32, color: Color): u8
+[extern] def DrawSplineSegmentBezierQuadratic(p1: Vector2, c2: Vector2, p3: Vector2, thick: f32, color: Color): u8
+[extern] def DrawSplineSegmentBezierCubic(p1: Vector2, c2: Vector2, c3: Vector2, p4: Vector2, thick: f32, color: Color): u8
+[extern] def GetSplinePointLinear(startPos: Vector2, endPos: Vector2, t: f32): Vector2
+[extern] def GetSplinePointBasis(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, t: f32): Vector2
+[extern] def GetSplinePointCatmullRom(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, t: f32): Vector2
+[extern] def GetSplinePointBezierQuad(p1: Vector2, c2: Vector2, p3: Vector2, t: f32): Vector2
+[extern] def GetSplinePointBezierCubic(p1: Vector2, c2: Vector2, c3: Vector2, p4: Vector2, t: f32): Vector2
+[extern] def CheckCollisionRecs(rec1: Rectangle, rec2: Rectangle): bool
+[extern] def CheckCollisionCircles(center1: Vector2, radius1: f32, center2: Vector2, radius2: f32): bool
+[extern] def CheckCollisionCircleRec(center: Vector2, radius: f32, rec: Rectangle): bool
+[extern] def CheckCollisionPointRec(point: Vector2, rec: Rectangle): bool
+[extern] def CheckCollisionPointCircle(point: Vector2, center: Vector2, radius: f32): bool
+[extern] def CheckCollisionPointTriangle(point: Vector2, p1: Vector2, p2: Vector2, p3: Vector2): bool
+[extern] def CheckCollisionPointPoly(point: Vector2, points: &Vector2, pointCount: i32): bool
+[extern] def CheckCollisionLines(startPos1: Vector2, endPos1: Vector2, startPos2: Vector2, endPos2: Vector2, collisionPoint: &Vector2): bool
+[extern] def CheckCollisionPointLine(point: Vector2, p1: Vector2, p2: Vector2, threshold: i32): bool
+[extern] def GetCollisionRec(rec1: Rectangle, rec2: Rectangle): Rectangle
+[extern] def LoadImage(fileName: &char): Image
+[extern] def LoadImageRaw(fileName: &char, width: i32, height: i32, format: i32, headerSize: i32): Image
+[extern] def LoadImageSvg(fileNameOrString: &char, width: i32, height: i32): Image
+[extern] def LoadImageAnim(fileName: &char, frames: &i32): Image
+[extern] def LoadImageAnimFromMemory(fileType: &char, fileData: &u8, dataSize: i32, frames: &i32): Image
+[extern] def LoadImageFromMemory(fileType: &char, fileData: &u8, dataSize: i32): Image
+[extern] def LoadImageFromTexture(texture: Texture2D): Image
+[extern] def LoadImageFromScreen(): Image
+[extern] def IsImageReady(image: Image): bool
+[extern] def UnloadImage(image: Image): u8
+[extern] def ExportImage(image: Image, fileName: &char): bool
+[extern] def ExportImageToMemory(image: Image, fileType: &char, fileSize: &i32): &u8
+[extern] def ExportImageAsCode(image: Image, fileName: &char): bool
+[extern] def GenImageColor(width: i32, height: i32, color: Color): Image
+[extern] def GenImageGradientLinear(width: i32, height: i32, direction: i32, start: Color, end: Color): Image
+[extern] def GenImageGradientRadial(width: i32, height: i32, density: f32, inner: Color, outer: Color): Image
+[extern] def GenImageGradientSquare(width: i32, height: i32, density: f32, inner: Color, outer: Color): Image
+[extern] def GenImageChecked(width: i32, height: i32, checksX: i32, checksY: i32, col1: Color, col2: Color): Image
+[extern] def GenImageWhiteNoise(width: i32, height: i32, factor: f32): Image
+[extern] def GenImagePerlinNoise(width: i32, height: i32, offsetX: i32, offsetY: i32, scale: f32): Image
+[extern] def GenImageCellular(width: i32, height: i32, tileSize: i32): Image
+[extern] def GenImageText(width: i32, height: i32, text: &char): Image
+[extern] def ImageCopy(image: Image): Image
+[extern] def ImageFromImage(image: Image, rec: Rectangle): Image
+[extern] def ImageText(text: &char, fontSize: i32, color: Color): Image
+[extern] def ImageTextEx(font: Font, text: &char, fontSize: f32, spacing: f32, tint: Color): Image
+[extern] def ImageFormat(image: &Image, newFormat: i32): u8
+[extern] def ImageToPOT(image: &Image, fill: Color): u8
+[extern] def ImageCrop(image: &Image, crop: Rectangle): u8
+[extern] def ImageAlphaCrop(image: &Image, threshold: f32): u8
+[extern] def ImageAlphaClear(image: &Image, color: Color, threshold: f32): u8
+[extern] def ImageAlphaMask(image: &Image, alphaMask: Image): u8
+[extern] def ImageAlphaPremultiply(image: &Image): u8
+[extern] def ImageBlurGaussian(image: &Image, blurSize: i32): u8
+//[extern] def ImageKernelConvolution(image: &Image, kernel: &floa, kernelSize: i32): u8
+[extern] def ImageResize(image: &Image, newWidth: i32, newHeight: i32): u8
+[extern] def ImageResizeNN(image: &Image, newWidth: i32, newHeight: i32): u8
+[extern] def ImageResizeCanvas(image: &Image, newWidth: i32, newHeight: i32, offsetX: i32, offsetY: i32, fill: Color): u8
+[extern] def ImageMipmaps(image: &Image): u8
+[extern] def ImageDither(image: &Image, rBpp: i32, gBpp: i32, bBpp: i32, aBpp: i32): u8
+[extern] def ImageFlipVertical(image: &Image): u8
+[extern] def ImageFlipHorizontal(image: &Image): u8
+[extern] def ImageRotate(image: &Image, degrees: i32): u8
+[extern] def ImageRotateCW(image: &Image): u8
+[extern] def ImageRotateCCW(image: &Image): u8
+[extern] def ImageColorTint(image: &Image, color: Color): u8
+[extern] def ImageColorInvert(image: &Image): u8
+[extern] def ImageColorGrayscale(image: &Image): u8
+[extern] def ImageColorContrast(image: &Image, contrast: f32): u8
+[extern] def ImageColorBrightness(image: &Image, brightness: i32): u8
+[extern] def ImageColorReplace(image: &Image, color: Color, replace: Color): u8
+[extern] def LoadImageColors(image: Image): &Color
+[extern] def LoadImagePalette(image: Image, maxPaletteSize: i32, colorCount: &i32): &Color
+[extern] def UnloadImageColors(colors: &Color): u8
+[extern] def UnloadImagePalette(colors: &Color): u8
+[extern] def GetImageAlphaBorder(image: Image, threshold: f32): Rectangle
+[extern] def GetImageColor(image: Image, x: i32, y: i32): Color
+[extern] def ImageClearBackground(dst: &Image, color: Color): u8
+[extern] def ImageDrawPixel(dst: &Image, posX: i32, posY: i32, color: Color): u8
+[extern] def ImageDrawPixelV(dst: &Image, position: Vector2, color: Color): u8
+[extern] def ImageDrawLine(dst: &Image, startPosX: i32, startPosY: i32, endPosX: i32, endPosY: i32, color: Color): u8
+[extern] def ImageDrawLineV(dst: &Image, start: Vector2, end: Vector2, color: Color): u8
+[extern] def ImageDrawCircle(dst: &Image, centerX: i32, centerY: i32, radius: i32, color: Color): u8
+[extern] def ImageDrawCircleV(dst: &Image, center: Vector2, radius: i32, color: Color): u8
+[extern] def ImageDrawCircleLines(dst: &Image, centerX: i32, centerY: i32, radius: i32, color: Color): u8
+[extern] def ImageDrawCircleLinesV(dst: &Image, center: Vector2, radius: i32, color: Color): u8
+[extern] def ImageDrawRectangle(dst: &Image, posX: i32, posY: i32, width: i32, height: i32, color: Color): u8
+[extern] def ImageDrawRectangleV(dst: &Image, position: Vector2, size: Vector2, color: Color): u8
+[extern] def ImageDrawRectangleRec(dst: &Image, rec: Rectangle, color: Color): u8
+[extern] def ImageDrawRectangleLines(dst: &Image, rec: Rectangle, thick: i32, color: Color): u8
+[extern] def ImageDraw(dst: &Image, src: Image, srcRec: Rectangle, dstRec: Rectangle, tint: Color): u8
+[extern] def ImageDrawText(dst: &Image, text: &char, posX: i32, posY: i32, fontSize: i32, color: Color): u8
+[extern] def ImageDrawTextEx(dst: &Image, font: Font, text: &char, position: Vector2, fontSize: f32, spacing: f32, tint: Color): u8
+[extern] def LoadTexture(fileName: &char): Texture2D
+[extern] def LoadTextureFromImage(image: Image): Texture2D
+[extern] def LoadTextureCubemap(image: Image, layout: i32): TextureCubemap
+[extern] def LoadRenderTexture(width: i32, height: i32): RenderTexture2D
+[extern] def IsTextureReady(texture: Texture2D): bool
+[extern] def UnloadTexture(texture: Texture2D): u8
+[extern] def IsRenderTextureReady(target: RenderTexture2D): bool
+[extern] def UnloadRenderTexture(target: RenderTexture2D): u8
+[extern] def UpdateTexture(texture: Texture2D, pixels: untyped_ptr): u8
+[extern] def UpdateTextureRec(texture: Texture2D, rec: Rectangle, pixels: untyped_ptr): u8
+[extern] def GenTextureMipmaps(texture: &Texture2D): u8
+[extern] def SetTextureFilter(texture: Texture2D, filter: i32): u8
+[extern] def SetTextureWrap(texture: Texture2D, wrap: i32): u8
+[extern] def DrawTexture(texture: Texture2D, posX: i32, posY: i32, tint: Color): u8
+[extern] def DrawTextureV(texture: Texture2D, position: Vector2, tint: Color): u8
+[extern] def DrawTextureEx(texture: Texture2D, position: Vector2, rotation: f32, scale: f32, tint: Color): u8
+[extern] def DrawTextureRec(texture: Texture2D, source: Rectangle, position: Vector2, tint: Color): u8
+[extern] def DrawTexturePro(texture: Texture2D, source: Rectangle, dest: Rectangle, origin: Vector2, rotation: f32, tint: Color): u8
+[extern] def DrawTextureNPatch(texture: Texture2D, nPatchInfo: NPatchInfo, dest: Rectangle, origin: Vector2, rotation: f32, tint: Color): u8
+[extern] def ColorIsEqual(col1: Color, col2: Color): bool
+[extern] def Fade(color: Color, alpha: f32): Color
+[extern] def ColorToInt(color: Color): i32
+[extern] def ColorNormalize(color: Color): Vector4
+[extern] def ColorFromNormalized(normalized: Vector4): Color
+[extern] def ColorToHSV(color: Color): Vector3
+[extern] def ColorFromHSV(hue: f32, saturation: f32, value: f32): Color
+[extern] def ColorTint(color: Color, tint: Color): Color
+[extern] def ColorBrightness(color: Color, factor: f32): Color
+[extern] def ColorContrast(color: Color, contrast: f32): Color
+[extern] def ColorAlpha(color: Color, alpha: f32): Color
+[extern] def ColorAlphaBlend(dst: Color, src: Color, tint: Color): Color
+[extern] def GetColor(hexValue: u32): Color
+[extern] def GetPixelColor(srcPtr: untyped_ptr, format: i32): Color
+[extern] def SetPixelColor(dstPtr: untyped_ptr, color: Color, format: i32): u8
+[extern] def GetPixelDataSize(width: i32, height: i32, format: i32): i32
+[extern] def GetFontDefault(): Font
+[extern] def LoadFont(fileName: &char): Font
+[extern] def LoadFontEx(fileName: &char, fontSize: i32, codepoints: &i32, codepointCount: i32): Font
+[extern] def LoadFontFromImage(image: Image, key: Color, firstChar: i32): Font
+[extern] def LoadFontFromMemory(fileType: &char, fileData: &u8, dataSize: i32, fontSize: i32, codepoints: &i32, codepointCount: i32): Font
+[extern] def IsFontReady(font: Font): bool
+[extern] def LoadFontData(fileData: &u8, dataSize: i32, fontSize: i32, codepoints: &i32, codepointCount: i32, type: i32): &GlyphInfo
+[extern] def GenImageFontAtlas(glyphs: &GlyphInfo, glyphRecs: &Rectangle, glyphCount: i32, fontSize: i32, padding: i32, packMethod: i32): Image
+[extern] def UnloadFontData(glyphs: &GlyphInfo, glyphCount: i32): u8
+[extern] def UnloadFont(font: Font): u8
+[extern] def ExportFontAsCode(font: Font, fileName: &char): bool
+[extern] def DrawFPS(posX: i32, posY: i32): u8
+[extern] def DrawText(text: &char, posX: i32, posY: i32, fontSize: i32, color: Color): u8
+[extern] def DrawTextEx(font: Font, text: &char, position: Vector2, fontSize: f32, spacing: f32, tint: Color): u8
+[extern] def DrawTextPro(font: Font, text: &char, position: Vector2, origin: Vector2, rotation: f32, fontSize: f32, spacing: f32, tint: Color): u8
+[extern] def DrawTextCodepoint(font: Font, codepoint: i32, position: Vector2, fontSize: f32, tint: Color): u8
+[extern] def DrawTextCodepoints(font: Font, codepoints: &i32, codepointCount: i32, position: Vector2, fontSize: f32, spacing: f32, tint: Color): u8
+[extern] def SetTextLineSpacing(spacing: i32): u8
+[extern] def MeasureText(text: &char, fontSize: i32): i32
+[extern] def MeasureTextEx(font: Font, text: &char, fontSize: f32, spacing: f32): Vector2
+[extern] def GetGlyphIndex(font: Font, codepoint: i32): i32
+[extern] def GetGlyphInfo(font: Font, codepoint: i32): GlyphInfo
+[extern] def GetGlyphAtlasRec(font: Font, codepoint: i32): Rectangle
+[extern] def LoadUTF8(codepoints: &i32, length: i32): &char
+[extern] def UnloadUTF8(text: &char): u8
+[extern] def LoadCodepoints(text: &char, count: &i32): &i32
+[extern] def UnloadCodepoints(codepoints: &i32): u8
+[extern] def GetCodepointCount(text: &char): i32
+[extern] def GetCodepoint(text: &char, codepointSize: &i32): i32
+[extern] def GetCodepointNext(text: &char, codepointSize: &i32): i32
+[extern] def GetCodepointPrevious(text: &char, codepointSize: &i32): i32
+[extern] def CodepointToUTF8(codepoint: i32, utf8Size: &i32): &char
+[extern] def TextCopy(dst: &char, src: &char): i32
+[extern] def TextIsEqual(text1: &char, text2: &char): bool
+[extern] def TextLength(text: &char): u32
+[extern] def TextFormat(text: &char, ...): &char
+[extern] def TextSubtext(text: &char, position: i32, length: i32): &char
+[extern] def TextReplace(text: &char, replace: &char, by: &char): &char
+[extern] def TextInsert(text: &char, insert: &char, position: i32): &char
+[extern] def TextJoin(textList: &char, count: i32, delimiter: &char): &char
+[extern] def TextSplit(text: &char, delimiter: char, count: &i32): &char
+[extern] def TextAppend(text: &char, append: &char, position: &i32): u8
+[extern] def TextFindIndex(text: &char, find: &char): i32
+[extern] def TextToUpper(text: &char): &char
+[extern] def TextToLower(text: &char): &char
+[extern] def TextToPascal(text: &char): &char
+[extern] def TextToInteger(text: &char): i32
+[extern] def TextToFloat(text: &char): f32
+[extern] def DrawLine3D(startPos: Vector3, endPos: Vector3, color: Color): u8
+[extern] def DrawPoint3D(position: Vector3, color: Color): u8
+[extern] def DrawCircle3D(center: Vector3, radius: f32, rotationAxis: Vector3, rotationAngle: f32, color: Color): u8
+[extern] def DrawTriangle3D(v1: Vector3, v2: Vector3, v3: Vector3, color: Color): u8
+[extern] def DrawTriangleStrip3D(points: &Vector3, pointCount: i32, color: Color): u8
+[extern] def DrawCube(position: Vector3, width: f32, height: f32, length: f32, color: Color): u8
+[extern] def DrawCubeV(position: Vector3, size: Vector3, color: Color): u8
+[extern] def DrawCubeWires(position: Vector3, width: f32, height: f32, length: f32, color: Color): u8
+[extern] def DrawCubeWiresV(position: Vector3, size: Vector3, color: Color): u8
+[extern] def DrawSphere(centerPos: Vector3, radius: f32, color: Color): u8
+[extern] def DrawSphereEx(centerPos: Vector3, radius: f32, rings: i32, slices: i32, color: Color): u8
+[extern] def DrawSphereWires(centerPos: Vector3, radius: f32, rings: i32, slices: i32, color: Color): u8
+[extern] def DrawCylinder(position: Vector3, radiusTop: f32, radiusBottom: f32, height: f32, slices: i32, color: Color): u8
+[extern] def DrawCylinderEx(startPos: Vector3, endPos: Vector3, startRadius: f32, endRadius: f32, sides: i32, color: Color): u8
+[extern] def DrawCylinderWires(position: Vector3, radiusTop: f32, radiusBottom: f32, height: f32, slices: i32, color: Color): u8
+[extern] def DrawCylinderWiresEx(startPos: Vector3, endPos: Vector3, startRadius: f32, endRadius: f32, sides: i32, color: Color): u8
+[extern] def DrawCapsule(startPos: Vector3, endPos: Vector3, radius: f32, slices: i32, rings: i32, color: Color): u8
+[extern] def DrawCapsuleWires(startPos: Vector3, endPos: Vector3, radius: f32, slices: i32, rings: i32, color: Color): u8
+[extern] def DrawPlane(centerPos: Vector3, size: Vector2, color: Color): u8
+[extern] def DrawRay(ray: Ray, color: Color): u8
+[extern] def DrawGrid(slices: i32, spacing: f32): u8
+[extern] def LoadModel(fileName: &char): Model
+[extern] def LoadModelFromMesh(mesh: Mesh): Model
+[extern] def IsModelReady(model: Model): bool
+[extern] def UnloadModel(model: Model): u8
+[extern] def GetModelBoundingBox(model: Model): BoundingBox
+[extern] def DrawModel(model: Model, position: Vector3, scale: f32, tint: Color): u8
+[extern] def DrawModelEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: f32, scale: Vector3, tint: Color): u8
+[extern] def DrawModelWires(model: Model, position: Vector3, scale: f32, tint: Color): u8
+[extern] def DrawModelWiresEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: f32, scale: Vector3, tint: Color): u8
+[extern] def DrawBoundingBox(box: BoundingBox, color: Color): u8
+[extern] def DrawBillboard(camera: Camera, texture: Texture2D, position: Vector3, size: f32, tint: Color): u8
+[extern] def DrawBillboardRec(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, size: Vector2, tint: Color): u8
+[extern] def DrawBillboardPro(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, up: Vector3, size: Vector2, origin: Vector2, rotation: f32, tint: Color): u8
+[extern] def UploadMesh(mesh: &Mesh, dynamic: bool): u8
+[extern] def UpdateMeshBuffer(mesh: Mesh, index: i32, data: untyped_ptr, dataSize: i32, offset: i32): u8
+[extern] def UnloadMesh(mesh: Mesh): u8
+[extern] def DrawMesh(mesh: Mesh, material: Material, transform: Matrix): u8
+[extern] def DrawMeshInstanced(mesh: Mesh, material: Material, transforms: &Matrix, instances: i32): u8
+[extern] def GetMeshBoundingBox(mesh: Mesh): BoundingBox
+[extern] def GenMeshTangents(mesh: &Mesh): u8
+[extern] def ExportMesh(mesh: Mesh, fileName: &char): bool
+[extern] def ExportMeshAsCode(mesh: Mesh, fileName: &char): bool
+[extern] def GenMeshPoly(sides: i32, radius: f32): Mesh
+[extern] def GenMeshPlane(width: f32, length: f32, resX: i32, resZ: i32): Mesh
+[extern] def GenMeshCube(width: f32, height: f32, length: f32): Mesh
+[extern] def GenMeshSphere(radius: f32, rings: i32, slices: i32): Mesh
+[extern] def GenMeshHemiSphere(radius: f32, rings: i32, slices: i32): Mesh
+[extern] def GenMeshCylinder(radius: f32, height: f32, slices: i32): Mesh
+[extern] def GenMeshCone(radius: f32, height: f32, slices: i32): Mesh
+[extern] def GenMeshTorus(radius: f32, size: f32, radSeg: i32, sides: i32): Mesh
+[extern] def GenMeshKnot(radius: f32, size: f32, radSeg: i32, sides: i32): Mesh
+[extern] def GenMeshHeightmap(heightmap: Image, size: Vector3): Mesh
+[extern] def GenMeshCubicmap(cubicmap: Image, cubeSize: Vector3): Mesh
+[extern] def LoadMaterials(fileName: &char, materialCount: &i32): &Material
+[extern] def LoadMaterialDefault(): Material
+[extern] def IsMaterialReady(material: Material): bool
+[extern] def UnloadMaterial(material: Material): u8
+[extern] def SetMaterialTexture(material: &Material, mapType: i32, texture: Texture2D): u8
+[extern] def SetModelMeshMaterial(model: &Model, meshId: i32, materialId: i32): u8
+[extern] def LoadModelAnimations(fileName: &char, animCount: &i32): &ModelAnimation
+[extern] def UpdateModelAnimation(model: Model, anim: ModelAnimation, frame: i32): u8
+[extern] def UnloadModelAnimation(anim: ModelAnimation): u8
+[extern] def UnloadModelAnimations(animations: &ModelAnimation, animCount: i32): u8
+[extern] def IsModelAnimationValid(model: Model, anim: ModelAnimation): bool
+[extern] def CheckCollisionSpheres(center1: Vector3, radius1: f32, center2: Vector3, radius2: f32): bool
+[extern] def CheckCollisionBoxes(box1: BoundingBox, box2: BoundingBox): bool
+[extern] def CheckCollisionBoxSphere(box: BoundingBox, center: Vector3, radius: f32): bool
+[extern] def GetRayCollisionSphere(ray: Ray, center: Vector3, radius: f32): RayCollision
+[extern] def GetRayCollisionBox(ray: Ray, box: BoundingBox): RayCollision
+[extern] def GetRayCollisionMesh(ray: Ray, mesh: Mesh, transform: Matrix): RayCollision
+[extern] def GetRayCollisionTriangle(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3): RayCollision
+[extern] def GetRayCollisionQuad(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3, p4: Vector3): RayCollision
+[extern] def InitAudioDevice(): u8
+[extern] def CloseAudioDevice(): u8
+[extern] def IsAudioDeviceReady(): bool
+[extern] def SetMasterVolume(volume: f32): u8
+[extern] def GetMasterVolume(): f32
+[extern] def LoadWave(fileName: &char): Wave
+[extern] def LoadWaveFromMemory(fileType: &char, fileData: &u8, dataSize: i32): Wave
+[extern] def IsWaveReady(wave: Wave): bool
+[extern] def LoadSound(fileName: &char): Sound
+[extern] def LoadSoundFromWave(wave: Wave): Sound
+[extern] def LoadSoundAlias(source: Sound): Sound
+[extern] def IsSoundReady(sound: Sound): bool
+[extern] def UpdateSound(sound: Sound, data: untyped_ptr, sampleCount: i32): u8
+[extern] def UnloadWave(wave: Wave): u8
+[extern] def UnloadSound(sound: Sound): u8
+[extern] def UnloadSoundAlias(alias: Sound): u8
+[extern] def ExportWave(wave: Wave, fileName: &char): bool
+[extern] def ExportWaveAsCode(wave: Wave, fileName: &char): bool
+[extern] def PlaySound(sound: Sound): u8
+[extern] def StopSound(sound: Sound): u8
+[extern] def PauseSound(sound: Sound): u8
+[extern] def ResumeSound(sound: Sound): u8
+[extern] def IsSoundPlaying(sound: Sound): bool
+[extern] def SetSoundVolume(sound: Sound, volume: f32): u8
+[extern] def SetSoundPitch(sound: Sound, pitch: f32): u8
+[extern] def SetSoundPan(sound: Sound, pan: f32): u8
+[extern] def WaveCopy(wave: Wave): Wave
+[extern] def WaveCrop(wave: &Wave, initSample: i32, finalSample: i32): u8
+[extern] def WaveFormat(wave: &Wave, sampleRate: i32, sampleSize: i32, channels: i32): u8
+[extern] def LoadWaveSamples(wave: Wave): &f32
+[extern] def UnloadWaveSamples(samples: &f32): u8
+[extern] def LoadMusicStream(fileName: &char): Music
+[extern] def LoadMusicStreamFromMemory(fileType: &char, data: &u8, dataSize: i32): Music
+[extern] def IsMusicReady(music: Music): bool
+[extern] def UnloadMusicStream(music: Music): u8
+[extern] def PlayMusicStream(music: Music): u8
+[extern] def IsMusicStreamPlaying(music: Music): bool
+[extern] def UpdateMusicStream(music: Music): u8
+[extern] def StopMusicStream(music: Music): u8
+[extern] def PauseMusicStream(music: Music): u8
+[extern] def ResumeMusicStream(music: Music): u8
+[extern] def SeekMusicStream(music: Music, position: f32): u8
+[extern] def SetMusicVolume(music: Music, volume: f32): u8
+[extern] def SetMusicPitch(music: Music, pitch: f32): u8
+[extern] def SetMusicPan(music: Music, pan: f32): u8
+[extern] def GetMusicTimeLength(music: Music): f32
+[extern] def GetMusicTimePlayed(music: Music): f32
+[extern] def LoadAudioStream(sampleRate: u32, sampleSize: u32, channels: u32): AudioStream
+[extern] def IsAudioStreamReady(stream: AudioStream): bool
+[extern] def UnloadAudioStream(stream: AudioStream): u8
+[extern] def UpdateAudioStream(stream: AudioStream, data: untyped_ptr, frameCount: i32): u8
+[extern] def IsAudioStreamProcessed(stream: AudioStream): bool
+[extern] def PlayAudioStream(stream: AudioStream): u8
+[extern] def PauseAudioStream(stream: AudioStream): u8
+[extern] def ResumeAudioStream(stream: AudioStream): u8
+[extern] def IsAudioStreamPlaying(stream: AudioStream): bool
+[extern] def StopAudioStream(stream: AudioStream): u8
+[extern] def SetAudioStreamVolume(stream: AudioStream, volume: f32): u8
+[extern] def SetAudioStreamPitch(stream: AudioStream, pitch: f32): u8
+[extern] def SetAudioStreamPan(stream: AudioStream, pan: f32): u8
+[extern] def SetAudioStreamBufferSizeDefault(size: i32): u8
+[extern] def SetAudioStreamCallback(stream: AudioStream, callback: AudioCallback): u8
+[extern] def AttachAudioStreamProcessor(stream: AudioStream, processor: AudioCallback): u8
+[extern] def DetachAudioStreamProcessor(stream: AudioStream, processor: AudioCallback): u8
+[extern] def AttachAudioMixedProcessor(processor: AudioCallback): u8
+[extern] def DetachAudioMixedProcessor(processor: AudioCallback): u8
