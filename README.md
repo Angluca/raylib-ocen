@@ -36,3 +36,7 @@ def main() {
     }
 }
 ```
+You can use tool parse ```raylib.h``` gen ocen code, have little bug:)
+```zsh
+./raylib_parser -i raylib.h -o raylib.oc -f CODE
+```
