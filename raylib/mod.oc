@@ -3,6 +3,13 @@
 //@compiler c_include "raylib.h"
 //@compiler c_flag "-lraylib"
 @compiler c_include "c/include/raylib.h"
+@compiler c_include "c/include/raymath.h"
 @compiler c_flag "-Lc/lib -lraylib"
 
+//import std::vec::*
+//import std::vec::{ Vec2f, Vec3f }
+//typedef Vector2 = Vec2f
+//typedef Vector3 = Vec3f
+
 [export] import .raylib::*
+//[export] import .raymath

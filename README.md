@@ -1,10 +1,13 @@
 ### raylib-ocen
 Install glfw and copy raylib 5 ```include|lib``` to ```./c/include|lib```
 ```zsh
-ocen -o win basic_window.oc && ./win
+ocen -o win ./examples/ocre/basic_window.oc && ./win
+
+make run
+make clean
 ```
 ```go
-import .raylib as rl
+import raylib as rl
 
 const screen_width: i32 = 800
 const screen_height: i32 = 450
@@ -36,7 +39,8 @@ def main() {
     }
 }
 ```
-You can use tool parse ```raylib.h``` gen ocen code, have little bug:)
+You can use tool parse ```raylib.h, raymath.h``` gen ocen code :)
 ```zsh
 ./raylib_parser -i raylib.h -o raylib.oc -f CODE
+./raylib_parser -i raymath.h -o raymath.oc -t RMAPI -f CODE
 ```

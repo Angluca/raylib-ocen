@@ -1496,6 +1496,8 @@ static const char *GetOcenType(char* ret, char* _name) {
     else if(strcmp("unsigned short", tname) == 0) strcpy(pt, "u16"), pt+=3;
     else if(strcmp("const unsigned char", tname) == 0) strcpy(pt, "u8"), pt+=2;
     else if(strcmp("const GlyphInfo", tname) == 0) strcpy(pt, "GlyphInfo"), pt+=9;
+    else if(strcmp("const Vector2", tname) == 0) strcpy(pt, "Vector2"), pt+=7;
+    else if(strcmp("const Vector3", tname) == 0) strcpy(pt, "Vector3"), pt+=7;
     else if(strcmp("const Matrix", tname) == 0) strcpy(pt, "Matrix"), pt+=6;
     else if(strcmp("unsigned char", tname) == 0) strcpy(pt, "u8"), pt+=2;
     else if(strcmp("const char", tname) == 0) strcpy(pt, "char"), pt+=4;

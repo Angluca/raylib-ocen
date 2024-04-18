@@ -1,0 +1,187 @@
+//import @raylib::{ Vector2, Vector3, Vector4, Matrix }
+
+//[extern] const pi: f32
+//[extern] const epsilon: f32
+//[extern] const deg2rad: f32
+//[extern] const rad2deg: f32
+//[extern] struct vector2 {
+      //x: f32
+      //y: f32
+//}
+//[extern] struct vector3 {
+      //x: f32
+      //y: f32
+      //z: f32
+//}
+//[extern] struct vector4 {
+      //x: f32
+      //y: f32
+      //z: f32
+      //w: f32
+//}
+//[extern] struct matrix {
+      //m0: f32
+      //m4: f32
+      //m8: f32
+      //m12: f32
+      //m1: f32
+      //m5: f32
+      //m9: f32
+      //m13: f32
+      //m2: f32
+      //m6: f32
+      //m10: f32
+      //m14: f32
+      //m3: f32
+      //m7: f32
+      //m11: f32
+      //m15: f32
+//}
+
+struct float3 {
+      v: [f32; 3]
+}
+struct float16 {
+      v: [f32; 16]
+}
+typedef Quaternion = Vector4
+[extern] def Clamp(value: f32, min: f32, max: f32): f32
+[extern] def Lerp(start: f32, end: f32, amount: f32): f32
+[extern] def Normalize(value: f32, start: f32, end: f32): f32
+[extern] def Remap(value: f32, inputStart: f32, inputEnd: f32, outputStart: f32, outputEnd: f32): f32
+[extern] def Wrap(value: f32, min: f32, max: f32): f32
+[extern] def FloatEquals(x: f32, y: f32): i32
+[extern] def Vector2Zero(): Vector2
+[extern] def Vector2One(): Vector2
+[operator "+"][extern] def Vector2Add(v1: Vector2, v2: Vector2): Vector2
+[operator "+"][extern] def Vector2AddValue(v: Vector2, add: f32): Vector2
+[operator "-"][extern] def Vector2Subtract(v1: Vector2, v2: Vector2): Vector2
+[operator "-"][extern] def Vector2SubtractValue(v: Vector2, sub: f32): Vector2
+[extern] def Vector2Length(v: Vector2): f32
+[extern] def Vector2LengthSqr(v: Vector2): f32
+[extern] def Vector2DotProduct(v1: Vector2, v2: Vector2): f32
+[extern] def Vector2Distance(v1: Vector2, v2: Vector2): f32
+[extern] def Vector2DistanceSqr(v1: Vector2, v2: Vector2): f32
+[extern] def Vector2Angle(v1: Vector2, v2: Vector2): f32
+[extern] def Vector2LineAngle(start: Vector2, end: Vector2): f32
+[extern] def Vector2Scale(v: Vector2, scale: f32): Vector2
+[operator "*"][extern] def Vector2Multiply(v1: Vector2, v2: Vector2): Vector2
+[operator "-"][extern] def Vector2Negate(v: Vector2): Vector2
+[operator "/"][extern] def Vector2Divide(v1: Vector2, v2: Vector2): Vector2
+[extern] def Vector2Normalize(v: Vector2): Vector2
+[extern] def Vector2Transform(v: Vector2, mat: Matrix): Vector2
+[extern] def Vector2Lerp(v1: Vector2, v2: Vector2, amount: f32): Vector2
+[extern] def Vector2Reflect(v: Vector2, normal: Vector2): Vector2
+[extern] def Vector2Min(v1: Vector2, v2: Vector2): Vector2
+[extern] def Vector2Max(v1: Vector2, v2: Vector2): Vector2
+[extern] def Vector2Rotate(v: Vector2, angle: f32): Vector2
+[extern] def Vector2MoveTowards(v: Vector2, target: Vector2, maxDistance: f32): Vector2
+[extern] def Vector2Invert(v: Vector2): Vector2
+[extern] def Vector2Clamp(v: Vector2, min: Vector2, max: Vector2): Vector2
+[extern] def Vector2ClampValue(v: Vector2, min: f32, max: f32): Vector2
+[extern] def Vector2Equals(p: Vector2, q: Vector2): i32
+[extern] def Vector2Refract(v: Vector2, n: Vector2, r: f32): Vector2
+[extern] def Vector3Zero(): Vector3
+[extern] def Vector3One(): Vector3
+[operator "+"][extern] def Vector3Add(v1: Vector3, v2: Vector3): Vector3
+[operator "+"][extern] def Vector3AddValue(v: Vector3, add: f32): Vector3
+[operator "-"][extern] def Vector3Subtract(v1: Vector3, v2: Vector3): Vector3
+[operator "-"][extern] def Vector3SubtractValue(v: Vector3, sub: f32): Vector3
+[extern] def Vector3Scale(v: Vector3, scalar: f32): Vector3
+[operator "*"][extern] def Vector3Multiply(v1: Vector3, v2: Vector3): Vector3
+[extern] def Vector3CrossProduct(v1: Vector3, v2: Vector3): Vector3
+[extern] def Vector3Perpendicular(v: Vector3): Vector3
+[extern] def Vector3Length(v: Vector3): f32
+[extern] def Vector3LengthSqr(v: Vector3): f32
+[extern] def Vector3DotProduct(v1: Vector3, v2: Vector3): f32
+[extern] def Vector3Distance(v1: Vector3, v2: Vector3): f32
+[extern] def Vector3DistanceSqr(v1: Vector3, v2: Vector3): f32
+[extern] def Vector3Angle(v1: Vector3, v2: Vector3): f32
+[operator "-"][extern] def Vector3Negate(v: Vector3): Vector3
+[operator "/"][extern] def Vector3Divide(v1: Vector3, v2: Vector3): Vector3
+[extern] def Vector3Normalize(v: Vector3): Vector3
+[extern] def Vector3Project(v1: Vector3, v2: Vector3): Vector3
+[extern] def Vector3Reject(v1: Vector3, v2: Vector3): Vector3
+[extern] def Vector3OrthoNormalize(v1: &Vector3, v2: &Vector3): u8
+[extern] def Vector3Transform(v: Vector3, mat: Matrix): Vector3
+[extern] def Vector3RotateByQuaternion(v: Vector3, q: Quaternion): Vector3
+[extern] def Vector3RotateByAxisAngle(v: Vector3, axis: Vector3, angle: f32): Vector3
+[extern] def Vector3MoveTowards(v: Vector3, target: Vector3, maxDistance: f32): Vector3
+[extern] def Vector3Lerp(v1: Vector3, v2: Vector3, amount: f32): Vector3
+[extern] def Vector3Reflect(v: Vector3, normal: Vector3): Vector3
+[extern] def Vector3Min(v1: Vector3, v2: Vector3): Vector3
+[extern] def Vector3Max(v1: Vector3, v2: Vector3): Vector3
+[extern] def Vector3Barycenter(p: Vector3, a: Vector3, b: Vector3, c: Vector3): Vector3
+[extern] def Vector3Unproject(source: Vector3, projection: Matrix, view: Matrix): Vector3
+[extern] def Vector3ToFloatV(v: Vector3): float3
+[extern] def Vector3Invert(v: Vector3): Vector3
+[extern] def Vector3Clamp(v: Vector3, min: Vector3, max: Vector3): Vector3
+[extern] def Vector3ClampValue(v: Vector3, min: f32, max: f32): Vector3
+[extern] def Vector3Equals(p: Vector3, q: Vector3): i32
+[extern] def Vector3Refract(v: Vector3, n: Vector3, r: f32): Vector3
+[extern] def Vector4Zero(): Vector4
+[extern] def Vector4One(): Vector4
+[operator "+"][extern] def Vector4Add(v1: Vector4, v2: Vector4): Vector4
+[operator "+"][extern] def Vector4AddValue(v: Vector4, add: f32): Vector4
+[operator "-"][extern] def Vector4Subtract(v1: Vector4, v2: Vector4): Vector4
+[operator "-"][extern] def Vector4SubtractValue(v: Vector4, add: f32): Vector4
+[extern] def Vector4Length(v: Vector4): f32
+[extern] def Vector4LengthSqr(v: Vector4): f32
+[extern] def Vector4DotProduct(v1: Vector4, v2: Vector4): f32
+[extern] def Vector4Distance(v1: Vector4, v2: Vector4): f32
+[extern] def Vector4DistanceSqr(v1: Vector4, v2: Vector4): f32
+[extern] def Vector4Scale(v: Vector4, scale: f32): Vector4
+[operator "*"][extern] def Vector4Multiply(v1: Vector4, v2: Vector4): Vector4
+[operator "-"][extern] def Vector4Negate(v: Vector4): Vector4
+[operator "/"][extern] def Vector4Divide(v1: Vector4, v2: Vector4): Vector4
+[extern] def Vector4Normalize(v: Vector4): Vector4
+[extern] def Vector4Min(v1: Vector4, v2: Vector4): Vector4
+[extern] def Vector4Max(v1: Vector4, v2: Vector4): Vector4
+[extern] def Vector4Lerp(v1: Vector4, v2: Vector4, amount: f32): Vector4
+[extern] def Vector4MoveTowards(v: Vector4, target: Vector4, maxDistance: f32): Vector4
+[extern] def Vector4Invert(v: Vector4): Vector4
+[extern] def Vector4Equals(p: Vector4, q: Vector4): i32
+[extern] def MatrixDeterminant(mat: Matrix): f32
+[extern] def MatrixTrace(mat: Matrix): f32
+[extern] def MatrixTranspose(mat: Matrix): Matrix
+[extern] def MatrixInvert(mat: Matrix): Matrix
+[extern] def MatrixIdentity(): Matrix
+[operator "+"][extern] def MatrixAdd(left: Matrix, right: Matrix): Matrix
+[operator "-"][extern] def MatrixSubtract(left: Matrix, right: Matrix): Matrix
+[operator "*"][extern] def MatrixMultiply(left: Matrix, right: Matrix): Matrix
+[extern] def MatrixTranslate(x: f32, y: f32, z: f32): Matrix
+[extern] def MatrixRotate(axis: Vector3, angle: f32): Matrix
+[extern] def MatrixRotateX(angle: f32): Matrix
+[extern] def MatrixRotateY(angle: f32): Matrix
+[extern] def MatrixRotateZ(angle: f32): Matrix
+[extern] def MatrixRotateXYZ(angle: Vector3): Matrix
+[extern] def MatrixRotateZYX(angle: Vector3): Matrix
+[extern] def MatrixScale(x: f32, y: f32, z: f32): Matrix
+[extern] def MatrixFrustum(left: f64, right: f64, bottom: f64, top: f64, near: f64, far: f64): Matrix
+[extern] def MatrixPerspective(fovY: f64, aspect: f64, nearPlane: f64, farPlane: f64): Matrix
+[extern] def MatrixOrtho(left: f64, right: f64, bottom: f64, top: f64, nearPlane: f64, farPlane: f64): Matrix
+[extern] def MatrixLookAt(eye: Vector3, target: Vector3, up: Vector3): Matrix
+[extern] def MatrixToFloatV(mat: Matrix): float16
+[operator "+"][extern] def QuaternionAdd(q1: Quaternion, q2: Quaternion): Quaternion
+[operator "+"][extern] def QuaternionAddValue(q: Quaternion, add: f32): Quaternion
+[operator "-"][extern] def QuaternionSubtract(q1: Quaternion, q2: Quaternion): Quaternion
+[operator "-"][extern] def QuaternionSubtractValue(q: Quaternion, sub: f32): Quaternion
+[extern] def QuaternionIdentity(): Quaternion
+[extern] def QuaternionLength(q: Quaternion): f32
+[extern] def QuaternionNormalize(q: Quaternion): Quaternion
+[extern] def QuaternionInvert(q: Quaternion): Quaternion
+[operator "*"][extern] def QuaternionMultiply(q1: Quaternion, q2: Quaternion): Quaternion
+[extern] def QuaternionScale(q: Quaternion, mul: f32): Quaternion
+[operator "/"][extern] def QuaternionDivide(q1: Quaternion, q2: Quaternion): Quaternion
+[extern] def QuaternionLerp(q1: Quaternion, q2: Quaternion, amount: f32): Quaternion
+[extern] def QuaternionNlerp(q1: Quaternion, q2: Quaternion, amount: f32): Quaternion
+[extern] def QuaternionSlerp(q1: Quaternion, q2: Quaternion, amount: f32): Quaternion
+[extern] def QuaternionFromVector3ToVector3(from: Vector3, to: Vector3): Quaternion
+[extern] def QuaternionFromMatrix(mat: Matrix): Quaternion
+[extern] def QuaternionToMatrix(q: Quaternion): Matrix
+[extern] def QuaternionFromAxisAngle(axis: Vector3, angle: f32): Quaternion
+[extern] def QuaternionToAxisAngle(q: Quaternion, outAxis: &Vector3, outAngle: &f32): u8
+[extern] def QuaternionFromEuler(pitch: f32, yaw: f32, roll: f32): Quaternion
+[extern] def QuaternionToEuler(q: Quaternion): Vector3
+[extern] def QuaternionTransform(q: Quaternion, mat: Matrix): Quaternion
+[extern] def QuaternionEquals(p: Quaternion, q: Quaternion): i32
