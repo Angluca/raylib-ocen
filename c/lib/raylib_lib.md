@@ -1,1 +1,1 @@
-copy raylib include and lib to ```./c/```. fold
+copy raylib include and lib to ```./c/```. folder

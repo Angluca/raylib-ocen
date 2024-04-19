@@ -1,15 +1,15 @@
 @compiler c_include "GLFW/glfw3.h"
 @compiler c_flag "-lglfw"
-//@compiler c_include "raylib.h"
-//@compiler c_flag "-lraylib"
+
 @compiler c_include "c/include/raylib.h"
 @compiler c_include "c/include/raymath.h"
+@compiler c_include "c/include/rlgl.h"
 @compiler c_flag "-Lc/lib -lraylib"
 
-//import std::vec::*
-//import std::vec::{ Vec2f, Vec3f }
-//typedef Vector2 = Vec2f
-//typedef Vector3 = Vec3f
+@compiler c_flag "-DRAYGUI_IMPLEMENTATION"
+@compiler c_include "c/include/raygui.h"
 
 [export] import .raylib::*
-//[export] import .raymath
+[export] import .raymath::*
+[export] import .rlgl::*
+[export] import .raygui::*

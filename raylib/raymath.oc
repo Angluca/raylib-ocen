@@ -44,7 +44,7 @@ struct float3 {
 struct float16 {
       v: [f32; 16]
 }
-typedef Quaternion = Vector4
+//typedef Quaternion = Vector4
 [extern] def Clamp(value: f32, min: f32, max: f32): f32
 [extern] def Lerp(start: f32, end: f32, amount: f32): f32
 [extern] def Normalize(value: f32, start: f32, end: f32): f32
@@ -162,17 +162,17 @@ typedef Quaternion = Vector4
 [extern] def MatrixOrtho(left: f64, right: f64, bottom: f64, top: f64, nearPlane: f64, farPlane: f64): Matrix
 [extern] def MatrixLookAt(eye: Vector3, target: Vector3, up: Vector3): Matrix
 [extern] def MatrixToFloatV(mat: Matrix): float16
-[operator "+"][extern] def QuaternionAdd(q1: Quaternion, q2: Quaternion): Quaternion
-[operator "+"][extern] def QuaternionAddValue(q: Quaternion, add: f32): Quaternion
-[operator "-"][extern] def QuaternionSubtract(q1: Quaternion, q2: Quaternion): Quaternion
-[operator "-"][extern] def QuaternionSubtractValue(q: Quaternion, sub: f32): Quaternion
+[extern] def QuaternionAdd(q1: Quaternion, q2: Quaternion): Quaternion
+[extern] def QuaternionAddValue(q: Quaternion, add: f32): Quaternion
+[extern] def QuaternionSubtract(q1: Quaternion, q2: Quaternion): Quaternion
+[extern] def QuaternionSubtractValue(q: Quaternion, sub: f32): Quaternion
 [extern] def QuaternionIdentity(): Quaternion
 [extern] def QuaternionLength(q: Quaternion): f32
 [extern] def QuaternionNormalize(q: Quaternion): Quaternion
 [extern] def QuaternionInvert(q: Quaternion): Quaternion
-[operator "*"][extern] def QuaternionMultiply(q1: Quaternion, q2: Quaternion): Quaternion
+[extern] def QuaternionMultiply(q1: Quaternion, q2: Quaternion): Quaternion
 [extern] def QuaternionScale(q: Quaternion, mul: f32): Quaternion
-[operator "/"][extern] def QuaternionDivide(q1: Quaternion, q2: Quaternion): Quaternion
+[extern] def QuaternionDivide(q1: Quaternion, q2: Quaternion): Quaternion
 [extern] def QuaternionLerp(q1: Quaternion, q2: Quaternion, amount: f32): Quaternion
 [extern] def QuaternionNlerp(q1: Quaternion, q2: Quaternion, amount: f32): Quaternion
 [extern] def QuaternionSlerp(q1: Quaternion, q2: Quaternion, amount: f32): Quaternion

@@ -1,6 +1,6 @@
 OCEN=ocen
-SRC=examples/core/base_window.oc
-DST=main
+SRC=examples/core/$(DST).oc
+DST=base_window
 
 build:
 	$(OCEN) -o $(DST) $(SRC)

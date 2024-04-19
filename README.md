@@ -1,4 +1,4 @@
-### raylib-ocen
+## Raylib-ocen :    raylib  +  raygui
 Install glfw and copy raylib 5 ```include|lib``` to ```./c/include|lib```
 ```zsh
 ocen -o win ./examples/ocre/basic_window.oc && ./win
@@ -34,6 +34,9 @@ def main() {
         //draw --
         rl::BeginDrawing()
             rl::ClearBackground(rl::DARKGRAY)
+            if(rl::GuiButton(rl::Rectangle(10.0, 10.0, 100.0, 30.0), "I'm btn") != 0) {
+                println("Hello btn!!")
+            }
 
         rl::EndDrawing()
     }
