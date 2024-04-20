@@ -35,6 +35,7 @@ def main() {
         //draw --
         rl::BeginDrawing()
             rl::ClearBackground(rl::DARKGRAY)
+            // raygui
             if(rl::GuiButton(rl::Rectangle(10.0, 10.0, 100.0, 30.0), "I'm btn") != 0) {
                 println("Hello btn!!")
             }

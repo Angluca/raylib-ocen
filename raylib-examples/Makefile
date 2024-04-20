@@ -1,18 +1,23 @@
 OCEN=ocen
+BUILD_DIR=./build
 
 SRC=core/$(DST).oc
-DST=base_window
+DST=base_window2
 
 OCENLIB=-l ..
-CFLAGS="-I.. -L../c/lib"
+RAYLIB_INC=-I../c/include
+RAYLIB_LIB=-L../c/lib
+LDFLAGS=$(RAYLIB_INC) $(RAYLIB_LIB)
+CFLAGS=-O3
 
 build:
-	$(OCEN) --cflags $(CFLAGS) -o $(DST) $(SRC) $(OCENLIB)
+	mkdir -p $(BUILD_DIR)
+	$(OCEN) --cflags "$(LDFLAGS) $(CFLAGS)" -o $(BUILD_DIR)/$(DST) $(SRC) $(OCENLIB)
 
 run: build
-	./$(DST)
+	./$(BUILD_DIR)/$(DST)
 
 clean:
-	rm ./$(DST) ./$(DST).c
+	rm -r $(BUILD_DIR)
 
 .PHONY: run build
