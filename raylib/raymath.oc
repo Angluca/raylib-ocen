@@ -1,9 +1,10 @@
 //import @raylib::{ Vector2, Vector3, Vector4, Matrix }
 
-//[extern] const pi: f32
-//[extern] const epsilon: f32
-//[extern] const deg2rad: f32
-//[extern] const rad2deg: f32
+[extern] const EPSILON: f32
+[extern "PI"] const PI_: f32
+[extern] const DEG2RAD: f32
+[extern] const RAD2DEG: f32
+
 //[extern] struct vector2 {
       //x: f32
       //y: f32

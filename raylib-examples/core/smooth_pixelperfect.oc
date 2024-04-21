@@ -1,0 +1,81 @@
+import raylib::raylib::*
+import std::math
+
+const screen_width: i32 = 800
+const screen_height: i32 = 450
+
+const virtual_screen_width: i32 = 160
+const virtual_screen_height: i32 = 160
+
+def main() {
+    SetExitKey(KEY_ESCAPE)
+    InitWindow(screen_width, screen_height, "smooth_pixelperfect")
+    defer CloseWindow()
+    SetTargetFPS(60)
+
+    let world_space_camera: Camera2D
+    world_space_camera.zoom = 1.0
+    let screen_space_camera: Camera2D
+    screen_space_camera.zoom = 1.0
+
+    let virtual_ratio = screen_width as f32 / virtual_screen_width as f32
+    let target = LoadRenderTexture(virtual_screen_width, virtual_screen_height)
+    defer UnloadRenderTexture(target)
+
+    let rec1 = Rectangle(70.0, 35.0, 20.0, 20.0)
+    let rec2 = Rectangle(90.0, 55.0, 30.0, 10.0)
+    let rec3 = Rectangle(80.0, 65.0, 15.0, 25.0)
+
+    let source_rec = Rectangle(0.0, 0.0, target.texture.width as f32, -target.texture.height as f32)
+    let dst_rec = Rectangle(-virtual_ratio, -virtual_ratio, screen_width as f32 + virtual_ratio * 2.0, screen_height as f32 + virtual_ratio * 2.0)
+
+    let origin = Vector2(0.0, 0.0);
+    let rotation: f32 = 0.0
+    let camera_x: f32 = 0.0
+    let camera_y: f32 = 0.0
+
+    //loops --
+    while(not WindowShouldClose()) {
+        //update --
+        rotation += 60.0 * GetFrameTime()
+        camera_x = (GetTime().sin() * 50.0 - 10.0) as f32
+        camera_y = (f64::cos(GetTime()) * 30.0) as f32
+
+        screen_space_camera.target = Vector2(camera_x, camera_y)
+
+        world_space_camera.target.x = screen_space_camera.target.x
+        screen_space_camera.target.x -= world_space_camera.target.x
+        screen_space_camera.target.x *= virtual_ratio
+
+        world_space_camera.target.y = screen_space_camera.target.y
+        screen_space_camera.target.y -= world_space_camera.target.y
+        screen_space_camera.target.y *= virtual_ratio
+
+        //draw --
+        BeginTextureMode(target)
+            ClearBackground(GRAY)
+
+            BeginMode2D(world_space_camera)
+                DrawRectanglePro(rec1, origin, rotation, BLACK)
+                DrawRectanglePro(rec2, origin, -rotation, RED)
+                DrawRectanglePro(rec3, origin, rotation + 45.0, BLUE)
+            EndMode2D()
+        EndTextureMode()
+
+        BeginDrawing()
+            ClearBackground(RED)
+
+            BeginMode2D(screen_space_camera)
+                DrawTexturePro(target.texture, source_rec, dst_rec, origin, 0.0, WHITE)
+            EndMode2D()
+
+            DrawText(TextFormat("Screen resolution: %ix%i", screen_width, screen_height), 10, 10, 20, DARKBLUE);
+            DrawText(TextFormat("World resolution: %ix%i", virtual_screen_width, virtual_screen_height), 10, 40, 20, DARKGREEN);
+            DrawFPS(GetScreenWidth() - 95, 10);
+
+            let mouse = GetMousePosition()
+            DrawCircle(mouse.x as i32, mouse.y as i32, 20.0, GREEN)
+
+        EndDrawing()
+    }
+}

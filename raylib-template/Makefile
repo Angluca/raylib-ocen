@@ -8,7 +8,8 @@ OCENLIB=-l ..
 RAYLIB_INC=-I../c/include
 RAYLIB_LIB=-L../c/lib
 LDFLAGS=$(RAYLIB_INC) $(RAYLIB_LIB)
-CFLAGS=-O3
+#CFLAGS=-O3
+CFLAGS=
 
 build:
 	mkdir -p $(BUILD_DIR)

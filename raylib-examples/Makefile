@@ -2,13 +2,15 @@ OCEN=ocen
 BUILD_DIR=./build
 
 SRC=core/$(DST).oc
-DST=base_window2
+#DST=base_window2
+DST=smooth_pixelperfect
 
 OCENLIB=-l ..
 RAYLIB_INC=-I../c/include
 RAYLIB_LIB=-L../c/lib
 LDFLAGS=$(RAYLIB_INC) $(RAYLIB_LIB)
-CFLAGS=-O3
+#CFLAGS=-O3
+CFLAGS=
 
 build:
 	mkdir -p $(BUILD_DIR)
