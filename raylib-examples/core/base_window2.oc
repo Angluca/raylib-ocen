@@ -4,6 +4,7 @@ const screen_width: i32 = 800
 const screen_height: i32 = 450
 
 def main() {
+    //init
     rl::SetExitKey(rl::KEY_ESCAPE)
     rl::InitWindow(screen_width, screen_height, "base_window")
     defer rl::CloseWindow()
@@ -51,4 +52,5 @@ def main() {
 
         rl::EndDrawing()
     }
+    //uninit
 }

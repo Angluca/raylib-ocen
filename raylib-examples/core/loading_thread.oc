@@ -1,0 +1,105 @@
+import raylib::raylib::*
+
+@compiler c_include "pthread.h"
+@compiler c_flag "-pthread"
+struct pthread_t extern
+def pthread_create(thread: &pthread_t, attr: untyped_ptr, start_routine: untyped_ptr, arg: untyped_ptr): i32 extern
+def pthread_join(thread: pthread_t, retval: &untyped_ptr): i32 extern
+
+// ----------------------------
+@compiler c_include "stdatomic.h"
+def atomic_store_explicit(data: untyped_ptr, a: u32, b: i32) extern
+def atomic_load_explicit(data: untyped_ptr, a: i32): i32 extern
+const memory_order_relaxed: i32 extern
+[atomic] let data_loaded: bool = false
+[atomic] let data_progress: i32 = 0
+
+const screen_width: i32 = 800
+const screen_height: i32 = 450
+enum State {
+    WAITING
+    LOADING
+    FINISHED
+}
+
+def main() {
+    //init
+    SetExitKey(KEY_ESCAPE)
+    InitWindow(screen_width, screen_height, "loading_thread")
+    defer CloseWindow()
+    SetTargetFPS(60)
+
+    let thread_id: pthread_t
+    let state: State = WAITING
+    let frames_counter: i32 = 0
+
+    //loops --
+    while(not WindowShouldClose()) {
+        //update --
+        match state {
+            WAITING => {
+                if IsKeyPressed(KEY_ENTER) {
+                    let err = pthread_create(&thread_id, null, &load_data_thread, null)
+                    if err != 0 then TraceLog(LOG_ERROR, "Error creating loading thread")
+                    else TraceLog(LOG_INFO, "Loading thread initialized successfully")
+                    state = LOADING
+                }
+            }
+            LOADING => {
+                ++frames_counter
+                if atomic_load_explicit(&data_loaded, memory_order_relaxed) != 0 {
+                    frames_counter = 0
+                    let err = pthread_join(thread_id, null)
+                    if err != 0 then TraceLog(LOG_ERROR, "Error joining loading thread")
+                    else TraceLog(LOG_INFO, "Loading thread terminated successfully")
+                    state = FINISHED
+                }
+            }
+            FINISHED => {
+                if IsKeyPressed(KEY_ENTER) {
+                    atomic_store_explicit(&data_loaded, 0, memory_order_relaxed)
+                    atomic_store_explicit(&data_progress, 0, memory_order_relaxed)
+                    state = WAITING
+                }
+            }
+        }
+
+        //draw --
+        BeginDrawing()
+            ClearBackground(LIGHTGRAY)
+            match state {
+                WAITING => DrawText("PRESS ENTER to START LOADING DATA", 150, 170, 20, DARKGRAY)
+                LOADING => {
+                    DrawRectangle(150, 200, atomic_load_explicit(&data_progress, memory_order_relaxed), 60, SKYBLUE)
+                    if ((frames_counter/15) % 2) > 0
+                        DrawText("LOADING DATA...", 240, 210, 40, DARKBLUE)
+                }
+                FINISHED => {
+                    DrawRectangle(150, 200, 500, 60, LIME)
+                    DrawText("DATA LOADED!", 250, 210, 40, GREEN);
+                }
+            }
+            DrawRectangleLines(150, 200, 500, 60, DARKGRAY);
+
+        EndDrawing()
+    }
+    //uninit
+}
+
+@compiler c_include "time.h"
+const CLOCKS_PER_SEC: u64 extern
+def clock(): u32 extern
+
+def load_data_thread(arg: untyped_ptr): untyped_ptr {
+    let time_counter: u32 = 0
+    let prev_time = clock()
+
+    while(time_counter < 5000) {
+        let cur_time = clock() - prev_time
+        time_counter = (cur_time as u64 * 1000 / CLOCKS_PER_SEC) as u32
+        atomic_store_explicit(&data_progress, time_counter/10, memory_order_relaxed)
+    }
+    atomic_store_explicit(&data_loaded, 1, memory_order_relaxed)
+
+    return null
+}

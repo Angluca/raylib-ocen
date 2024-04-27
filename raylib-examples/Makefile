@@ -3,7 +3,8 @@ BUILD_DIR=./build
 
 SRC=core/$(DST).oc
 #DST=base_window2
-DST=smooth_pixelperfect
+#DST=smooth_pixelperfect
+DST=loading_thread
 
 OCENLIB=-l ..
 RAYLIB_INC=-I../c/include

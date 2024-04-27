@@ -8,6 +8,7 @@ const virtual_screen_width: i32 = 160
 const virtual_screen_height: i32 = 160
 
 def main() {
+    //init
     SetExitKey(KEY_ESCAPE)
     InitWindow(screen_width, screen_height, "smooth_pixelperfect")
     defer CloseWindow()
@@ -78,4 +79,5 @@ def main() {
 
         EndDrawing()
     }
+    //uninit
 }

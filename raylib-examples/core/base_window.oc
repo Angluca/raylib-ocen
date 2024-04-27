@@ -7,6 +7,7 @@ const screen_width: i32 = 800
 const screen_height: i32 = 450
 
 def main() {
+    //init
     SetExitKey(KEY_ESCAPE)
     InitWindow(screen_width, screen_height, "base_window")
     defer CloseWindow()
@@ -31,4 +32,5 @@ def main() {
 
         EndDrawing()
     }
+    //uninit
 }
