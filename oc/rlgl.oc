@@ -150,7 +150,6 @@
     currentDepth: f32         // Current depth value for next draw
 }
 
-
 [extern] def rlMatrixMode(mode: i32): u8
 [extern] def rlPushMatrix(): u8
 [extern] def rlPopMatrix(): u8

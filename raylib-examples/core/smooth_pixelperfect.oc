@@ -1,4 +1,4 @@
-import raylib::raylib::*
+import oc::raylib::*
 import std::math
 
 const screen_width: i32 = 800

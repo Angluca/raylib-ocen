@@ -1,30 +1,31 @@
-import raylib as rl
+//import raylib as rl
+import oc::raylib::*
 
 const screen_width: i32 = 800
 const screen_height: i32 = 450
 
 def main() {
-    rl::SetExitKey(rl::KEY_ESCAPE)
-    rl::InitWindow(screen_width, screen_height, "base_window")
-    defer rl::CloseWindow()
-    rl::SetTargetFPS(60)
+    SetExitKey(KEY_ESCAPE)
+    InitWindow(screen_width, screen_height, "base_window")
+    defer CloseWindow()
+    SetTargetFPS(60)
 
-    let v1 = rl::Vector2(1.0, 2.0)
-    let v2 = rl::Vector2(3.0, 4.0)
-    //let v3 = rl::Vector2Add(v1, v2)
-    let v3 = v1 + v2
-    let v4 = v2 + 22.0
-    let v5 = v3 - v1
-    let v6 = v1 * v1
-    let v7 = v1 / v1
-    let v8 = rl::Vector2DistanceSqr(v1, v2)
+    //let v1 = Vector2(1.0, 2.0)
+    //let v2 = Vector2(3.0, 4.0)
+    ////let v3 = Vector2Add(v1, v2)
+    //let v3 = v1 + v2
+    //let v4 = v2 + 22.0
+    //let v5 = v3 - v1
+    //let v6 = v1 * v1
+    //let v7 = v1 / v1
+    //let v8 = Vector2DistanceSqr(v1, v2)
 
     //loops --
     let dt: f32 = 0.0
-    while(not rl::WindowShouldClose()) {
+    while(not WindowShouldClose()) {
         //update --
-        dt = rl::GetFrameTime()
-        let key = rl::GetKeyPressed()
+        dt = GetFrameTime()
+        let key = GetKeyPressed()
         match key {
             0 => {}
             else => {
@@ -33,22 +34,22 @@ def main() {
         }
 
         //draw --
-        rl::BeginDrawing()
-            rl::ClearBackground(rl::DARKGRAY)
+        BeginDrawing()
+            ClearBackground(DARKGRAY)
             // raygui
-            if(rl::GuiButton(rl::Rectangle(10.0, 10.0, 100.0, 30.0), "I'm btn") != 0) {
-                println("Hello btn!!")
-            }
-            // rlgl
-            rl::rlPushMatrix();
-                rl::rlTranslatef(0.0, 25.0*50.0, 0.0);
-                rl::rlRotatef(90.0, 1.0, 0.0, 0.0);
-                rl::DrawGrid(100, 50.0);
-            rl::rlPopMatrix();
+            //if(GuiButton(Rectangle(10.0, 10.0, 100.0, 30.0), "I'm btn") != 0) {
+                //println("Hello btn!!")
+            //}
+            //// rlgl
+            //rlPushMatrix();
+                //rlTranslatef(0.0, 25.0*50.0, 0.0);
+                //rlRotatef(90.0, 1.0, 0.0, 0.0);
+                //DrawGrid(100, 50.0);
+            //rlPopMatrix();
 
-            rl::DrawCircle(100, 100, 50.0, rl::BLUE)
+            DrawCircle(100, 100, 50.0, BLUE)
 
 
-        rl::EndDrawing()
+        EndDrawing()
     }
 }

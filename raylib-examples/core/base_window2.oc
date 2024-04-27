@@ -1,4 +1,4 @@
-import raylib as rl
+import oc as rl
 
 const screen_width: i32 = 800
 const screen_height: i32 = 450

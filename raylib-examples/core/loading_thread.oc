@@ -1,4 +1,4 @@
-import raylib::raylib::*
+import oc::raylib::*
 
 @compiler c_include "pthread.h"
 @compiler c_flag "-pthread"
