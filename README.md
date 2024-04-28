@@ -2,7 +2,7 @@
 https://github.com/raysan5/raylib  
 https://www.raylib.com/examples.html
 
-* Install ```glfw``` and copy ```raylib 5``` ```include|lib``` to ```./c/include|lib```
+* Install ```glfw``` and build-copy ```raylib 5``` ```include|lib``` to ```./c/include|lib```
 
 * ```raylib-template``` or ```raylib-examples``` set ```makefile``` ```-I include_path```  ```-L lib_path``` build it
 
@@ -13,7 +13,7 @@ make run
 make clean
 ```
 ```go
-import raylib::raylib::*
+import oc::raylib::*
 
 const screen_width: i32 = 800
 const screen_height: i32 = 450
@@ -40,9 +40,6 @@ def main() {
         //draw --
         BeginDrawing()
             ClearBackground(DARKGRAY)
-            if(GuiButton(Rectangle(10.0, 10.0, 100.0, 30.0), "I'm btn") != 0) {
-                println("Hello btn!!")
-            }
 
         EndDrawing()
     }

@@ -1,4 +1,5 @@
 //import @raylib::{ Vector2, Vector3, Vector4, Matrix }
+import @raylib::*
 
 [extern] const EPSILON: f32
 [extern "PI"] const PI_: f32

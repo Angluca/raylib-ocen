@@ -1,3 +1,6 @@
+//import @raylib::{ Vector2, Vector3, Vector4, Matrix }
+import @raylib::*
+
 [extern] const RLGL_VERSION: str
 [extern] const RL_DEFAULT_BATCH_BUFFER_ELEMENTS: i32
 [extern] const RL_DEFAULT_BATCH_BUFFERS: i32

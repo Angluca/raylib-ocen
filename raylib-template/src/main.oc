@@ -1,5 +1,8 @@
 //import raylib as rl
 import oc::raylib::*
+import oc::raymath::*
+import oc::rlgl::*
+import oc::raygui::*
 
 const screen_width: i32 = 800
 const screen_height: i32 = 450
@@ -10,15 +13,15 @@ def main() {
     defer CloseWindow()
     SetTargetFPS(60)
 
-    //let v1 = Vector2(1.0, 2.0)
-    //let v2 = Vector2(3.0, 4.0)
-    ////let v3 = Vector2Add(v1, v2)
-    //let v3 = v1 + v2
-    //let v4 = v2 + 22.0
-    //let v5 = v3 - v1
-    //let v6 = v1 * v1
-    //let v7 = v1 / v1
-    //let v8 = Vector2DistanceSqr(v1, v2)
+    let v1 = Vector2(1.0, 2.0)
+    let v2 = Vector2(3.0, 4.0)
+    //let v3 = Vector2Add(v1, v2)
+    let v3 = v1 + v2
+    let v4 = v2 + 22.0
+    let v5 = v3 - v1
+    let v6 = v1 * v1
+    let v7 = v1 / v1
+    let v8 = Vector2DistanceSqr(v1, v2)
 
     //loops --
     let dt: f32 = 0.0
@@ -37,15 +40,15 @@ def main() {
         BeginDrawing()
             ClearBackground(DARKGRAY)
             // raygui
-            //if(GuiButton(Rectangle(10.0, 10.0, 100.0, 30.0), "I'm btn") != 0) {
-                //println("Hello btn!!")
-            //}
-            //// rlgl
-            //rlPushMatrix();
-                //rlTranslatef(0.0, 25.0*50.0, 0.0);
-                //rlRotatef(90.0, 1.0, 0.0, 0.0);
-                //DrawGrid(100, 50.0);
-            //rlPopMatrix();
+            if(GuiButton(Rectangle(10.0, 10.0, 100.0, 30.0), "I'm btn") != 0) {
+                println("Hello btn!!")
+            }
+            // rlgl
+            rlPushMatrix();
+                rlTranslatef(0.0, 25.0*50.0, 0.0);
+                rlRotatef(90.0, 1.0, 0.0, 0.0);
+                DrawGrid(100, 50.0);
+            rlPopMatrix();
 
             DrawCircle(100, 100, 50.0, BLUE)
 
