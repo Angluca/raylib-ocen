@@ -2991,13 +2991,13 @@ int GuiSliderPro(Rectangle bounds, const char *textLeft, const char *textRight, 
         if (*value > maxValue) *value = maxValue;
         else if (*value < minValue) *value = minValue;
     }
-    
+
     // Control value change check
-    if(oldValue == *value) result = 0;
+    if (oldValue == *value) result = 0;
     else result = 1;
 
     // Slider bar limits check
-    int sliderValue = (int)(((*value - minValue)/(maxValue - minValue))*(bounds.width - sliderWidth - GuiGetStyle(SLIDER, BORDER_WIDTH)));
+    float sliderValue = (((*value - minValue)/(maxValue - minValue))*(bounds.width - sliderWidth - 2*GuiGetStyle(SLIDER, BORDER_WIDTH)));
     if (sliderWidth > 0)        // Slider
     {
         slider.x += sliderValue;
@@ -3008,7 +3008,7 @@ int GuiSliderPro(Rectangle bounds, const char *textLeft, const char *textRight, 
     else if (sliderWidth == 0)  // SliderBar
     {
         slider.x += GuiGetStyle(SLIDER, BORDER_WIDTH);
-        slider.width = (float)sliderValue;
+        slider.width = sliderValue;
         if (slider.width > bounds.width) slider.width = bounds.width - 2*GuiGetStyle(SLIDER, BORDER_WIDTH);
     }
     //--------------------------------------------------------------------
@@ -3899,14 +3899,14 @@ int GuiGrid(Rectangle bounds, const char *text, float spacing, int subdivs, Vect
         // Draw vertical grid lines
         for (int i = 0; i < linesV; i++)
         {
-            Rectangle lineV = { bounds.x + spacing*i/subdivs, bounds.y, 1, bounds.height };
+            Rectangle lineV = { bounds.x + spacing*i/subdivs, bounds.y, 1, bounds.height + 1 };
             GuiDrawRectangle(lineV, 0, BLANK, ((i%subdivs) == 0)? GuiFade(GetColor(color), RAYGUI_GRID_ALPHA*4) : GuiFade(GetColor(color), RAYGUI_GRID_ALPHA));
         }
 
         // Draw horizontal grid lines
         for (int i = 0; i < linesH; i++)
         {
-            Rectangle lineH = { bounds.x, bounds.y + spacing*i/subdivs, bounds.width, 1 };
+            Rectangle lineH = { bounds.x, bounds.y + spacing*i/subdivs, bounds.width + 1, 1 };
             GuiDrawRectangle(lineH, 0, BLANK, ((i%subdivs) == 0)? GuiFade(GetColor(color), RAYGUI_GRID_ALPHA*4) : GuiFade(GetColor(color), RAYGUI_GRID_ALPHA));
         }
     }
@@ -4797,8 +4797,8 @@ static void GuiDrawText(const char *text, Rectangle textBounds, int alignment, C
         {
             // NOTE: We consider icon height, probably different than text size
             GuiDrawIcon(iconId, (int)textBoundsPosition.x, (int)(textBounds.y + textBounds.height/2 - RAYGUI_ICON_SIZE*guiIconScale/2 + TEXT_VALIGN_PIXEL_OFFSET(textBounds.height)), guiIconScale, tint);
-            textBoundsPosition.x += (RAYGUI_ICON_SIZE*guiIconScale + ICON_TEXT_PADDING);
-            textBoundsWidthOffset = (RAYGUI_ICON_SIZE*guiIconScale + ICON_TEXT_PADDING);
+            textBoundsPosition.x += (float)(RAYGUI_ICON_SIZE*guiIconScale + ICON_TEXT_PADDING);
+            textBoundsWidthOffset = (float)(RAYGUI_ICON_SIZE*guiIconScale + ICON_TEXT_PADDING);
         }
 #endif
         // Get size in bytes of text,
@@ -4814,7 +4814,7 @@ static void GuiDrawText(const char *text, Rectangle textBounds, int alignment, C
         float textOffsetX = 0.0f;
         float glyphWidth = 0;
 
-        float ellipsisWidth = GetTextWidth("...");
+        int ellipsisWidth = GetTextWidth("...");
         bool overflowReached = false;
         for (int c = 0, codepointSize = 0; c < lineSize; c += codepointSize)
         {
@@ -4829,7 +4829,7 @@ static void GuiDrawText(const char *text, Rectangle textBounds, int alignment, C
             if (guiFont.glyphs[index].advanceX == 0) glyphWidth = ((float)guiFont.recs[index].width*scaleFactor);
             else glyphWidth = (float)guiFont.glyphs[index].advanceX*scaleFactor;
 
-            // Wrap mode text measuring, to validate if 
+            // Wrap mode text measuring, to validate if
             // it can be drawn or a new line is required
             if (wrapMode == TEXT_WRAP_CHAR)
             {
@@ -4889,7 +4889,9 @@ static void GuiDrawText(const char *text, Rectangle textBounds, int alignment, C
                             else if (!overflowReached)
                             {
                                 overflowReached = true;
-                                for (int j = 0; j < ellipsisWidth; j += ellipsisWidth/3) {
+
+                                for (int j = 0; j < ellipsisWidth; j += ellipsisWidth/3)
+                                {
                                     DrawTextCodepoint(guiFont, '.', RAYGUI_CLITERAL(Vector2){ textBoundsPosition.x + textOffsetX + j, textBoundsPosition.y + textOffsetY }, (float)GuiGetStyle(DEFAULT, TEXT_SIZE), GuiFade(tint, guiAlpha));
                                 }
                             }
@@ -5506,21 +5508,21 @@ static int GetCodepointNext(const char *text, int *codepointSize)
     if (0xf0 == (0xf8 & ptr[0]))
     {
         // 4 byte UTF-8 codepoint
-        if(((ptr[1] & 0xC0) ^ 0x80) || ((ptr[2] & 0xC0) ^ 0x80) || ((ptr[3] & 0xC0) ^ 0x80)) { return codepoint; } //10xxxxxx checks
+        if (((ptr[1] & 0xC0) ^ 0x80) || ((ptr[2] & 0xC0) ^ 0x80) || ((ptr[3] & 0xC0) ^ 0x80)) { return codepoint; } //10xxxxxx checks
         codepoint = ((0x07 & ptr[0]) << 18) | ((0x3f & ptr[1]) << 12) | ((0x3f & ptr[2]) << 6) | (0x3f & ptr[3]);
         *codepointSize = 4;
     }
     else if (0xe0 == (0xf0 & ptr[0]))
     {
         // 3 byte UTF-8 codepoint */
-        if(((ptr[1] & 0xC0) ^ 0x80) || ((ptr[2] & 0xC0) ^ 0x80)) { return codepoint; } //10xxxxxx checks
+        if (((ptr[1] & 0xC0) ^ 0x80) || ((ptr[2] & 0xC0) ^ 0x80)) { return codepoint; } //10xxxxxx checks
         codepoint = ((0x0f & ptr[0]) << 12) | ((0x3f & ptr[1]) << 6) | (0x3f & ptr[2]);
         *codepointSize = 3;
     }
     else if (0xc0 == (0xe0 & ptr[0]))
     {
         // 2 byte UTF-8 codepoint
-        if((ptr[1] & 0xC0) ^ 0x80) { return codepoint; } //10xxxxxx checks
+        if ((ptr[1] & 0xC0) ^ 0x80) { return codepoint; } //10xxxxxx checks
         codepoint = ((0x1f & ptr[0]) << 6) | (0x3f & ptr[1]);
         *codepointSize = 2;
     }
