@@ -1,4 +1,5 @@
 import @raylib::*
+
 [extern] const RAYGUI_VERSION_MAJOR: i32
 [extern] const RAYGUI_VERSION_MINOR: i32
 [extern] const RAYGUI_VERSION_PATCH: i32

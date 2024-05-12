@@ -2,9 +2,9 @@
 import @raylib::*
 
 [extern] const EPSILON: f32
-[extern "PI"] const PI_: f32
-[extern] const DEG2RAD: f32
-[extern] const RAD2DEG: f32
+//[extern "PI"] const PI_: f32
+//[extern] const DEG2RAD: f32
+//[extern] const RAD2DEG: f32
 
 //[extern] struct vector2 {
       //x: f32
@@ -66,7 +66,7 @@ struct float16 {
 [extern] def Vector2DistanceSqr(v1: Vector2, v2: Vector2): f32
 [extern] def Vector2Angle(v1: Vector2, v2: Vector2): f32
 [extern] def Vector2LineAngle(start: Vector2, end: Vector2): f32
-[extern] def Vector2Scale(v: Vector2, scale: f32): Vector2
+[operator "*"][extern] def Vector2Scale(v: Vector2, scale: f32): Vector2
 [operator "*"][extern] def Vector2Multiply(v1: Vector2, v2: Vector2): Vector2
 [operator "-"][extern] def Vector2Negate(v: Vector2): Vector2
 [operator "/"][extern] def Vector2Divide(v1: Vector2, v2: Vector2): Vector2
@@ -89,7 +89,7 @@ struct float16 {
 [operator "+"][extern] def Vector3AddValue(v: Vector3, add: f32): Vector3
 [operator "-"][extern] def Vector3Subtract(v1: Vector3, v2: Vector3): Vector3
 [operator "-"][extern] def Vector3SubtractValue(v: Vector3, sub: f32): Vector3
-[extern] def Vector3Scale(v: Vector3, scalar: f32): Vector3
+[operator "*"][extern] def Vector3Scale(v: Vector3, scalar: f32): Vector3
 [operator "*"][extern] def Vector3Multiply(v1: Vector3, v2: Vector3): Vector3
 [extern] def Vector3CrossProduct(v1: Vector3, v2: Vector3): Vector3
 [extern] def Vector3Perpendicular(v: Vector3): Vector3
@@ -132,7 +132,7 @@ struct float16 {
 [extern] def Vector4DotProduct(v1: Vector4, v2: Vector4): f32
 [extern] def Vector4Distance(v1: Vector4, v2: Vector4): f32
 [extern] def Vector4DistanceSqr(v1: Vector4, v2: Vector4): f32
-[extern] def Vector4Scale(v: Vector4, scale: f32): Vector4
+[operator "*"][extern] def Vector4Scale(v: Vector4, scale: f32): Vector4
 [operator "*"][extern] def Vector4Multiply(v1: Vector4, v2: Vector4): Vector4
 [operator "-"][extern] def Vector4Negate(v: Vector4): Vector4
 [operator "/"][extern] def Vector4Divide(v1: Vector4, v2: Vector4): Vector4

@@ -2,9 +2,11 @@
 [extern] const RAYLIB_VERSION_MINOR: i32
 [extern] const RAYLIB_VERSION_PATCH: i32
 [extern] const RAYLIB_VERSION: str
-//[extern "PI"] const PI_: f32
-//[extern] const DEG2RAD: f32
-//[extern] const RAD2DEG: f32
+
+[extern "PI"] const PI_: f32
+[extern] const DEG2RAD: f32
+[extern] const RAD2DEG: f32
+
 [extern] const LIGHTGRAY: Color
 [extern] const GRAY: Color
 [extern] const DARKGRAY: Color

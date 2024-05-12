@@ -47,6 +47,6 @@ def main() {
 ```
 * Use tool parse ```raylib.h, raymath.h``` gen ocen code if you want :)
 ```zsh
-./raylib_parser -i raylib.h -o raylib.oc -f CODE
-./raylib_parser -i raymath.h -o raymath.oc -t RMAPI -f CODE
+./raylib_parser -i ./include/raylib.h -o raylib.oc -f CODE
+./raylib_parser -i ./include/raymath.h -o raymath.oc -t RMAPI -f CODE
 ```

@@ -1,0 +1,32 @@
+import @raylib::*
+
+[extern] const CAMERA_CULL_DISTANCE_NEAR: i32
+[extern] const CAMERA_CULL_DISTANCE_FAR: i32
+
+//RCAMERA_IMPLEMENTATION
+[extern] const CAMERA_MOVE_SPEED: i32
+[extern] const CAMERA_ROTATION_SPEED: i32
+[extern] const CAMERA_PAN_SPEED: i32
+[extern] const CAMERA_MOUSE_MOVE_SENSITIVITY: i32
+[extern] const CAMERA_ORBITAL_SPEED: i32
+
+[extern] def GetCameraForward(camera: &Camera ): Vector3
+[extern] def GetCameraUp(camera: &Camera ): Vector3
+[extern] def GetCameraRight(camera: &Camera ): Vector3
+
+// Camera movement
+[extern] def CameraMoveForward(camera: &Camera, distance: f32, moveInWorldPlane: bool)
+[extern] def CameraMoveUp(camera: &Camera, distance: f32)
+[extern] def CameraMoveRight(camera: &Camera, distance: f32, moveInWorldPlane: bool)
+[extern] def CameraMoveToTarget(camera: &Camera, delta: f32)
+
+// Camera rotation
+[extern] def CameraYaw(camera: &Camera, angle: f32, rotateAroundTarget: bool)
+[extern] def CameraPitch(camera: &Camera, angle: f32, lockView: bool, rotateAroundTarget: bool, rotateUp: bool)
+[extern] def CameraRoll(camera: &Camera, angle: f32)
+
+[extern] def GetCameraViewMatrix(camera: &Camera): Matrix
+[extern] def GetCameraProjectionMatrix(camera: &Camera, aspect: f32): Matrix
+
+//not RCAMERA_STANDALONE
+//[extern] def UpdateCamera(camera: &Camera, mode: i32)

@@ -203,8 +203,8 @@ int main(int argc, char* argv[])
 {
     if (argc > 1) ProcessCommandLine(argc, argv);
 
-    if (inFileName[0] == '\0') MemoryCopy(inFileName, "../src/raylib.h\0", 16);
-    if (outFileName[0] == '\0') MemoryCopy(outFileName, "raylib_api.txt\0", 15);
+    if (inFileName[0] == '\0') MemoryCopy(inFileName, "./include/raylib.h\0", 18);
+    if (outFileName[0] == '\0') MemoryCopy(outFileName, "./raylib_api.txt\0", 16);
     if (apiDefine[0] == '\0') MemoryCopy(apiDefine, "RLAPI\0", 6);
 
     int length = 0;

@@ -6,10 +6,13 @@
 @compiler c_include "rlgl.h"
 @compiler c_flag "-lraylib"
 
+@compiler c_include "rcamera.h"
+
 @compiler c_flag "-DRAYGUI_IMPLEMENTATION"
 @compiler c_include "raygui.h"
 
 [export] import .raylib::*
 [export] import .raymath::*
 [export] import .rlgl::*
+[export] import .rcamera::*
 [export] import .raygui::*

@@ -1,7 +1,7 @@
 import oc::raylib::*
-//import raylib::raymath::*
-//import raylib::rlgl::*
-//import raylib::raygui::*
+//import oc::raymath::*
+//import oc::rlgl::*
+//import oc::raygui::*
 
 const screen_width: i32 = 800
 const screen_height: i32 = 450
@@ -9,6 +9,7 @@ const screen_height: i32 = 450
 def main() {
     //init
     SetExitKey(KEY_ESCAPE)
+    SetTraceLogLevel(LOG_WARNING)
     InitWindow(screen_width, screen_height, "base_window")
     defer CloseWindow()
     SetTargetFPS(60)
