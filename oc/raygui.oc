@@ -109,340 +109,340 @@ import @raylib::*
       alignmentV: i32
       padding: i32
 }
-const STATE_NORMAL: i32 = 0
-const STATE_FOCUSED: i32 = 1
-const STATE_PRESSED: i32 = 2
-const STATE_DISABLED: i32 = 3
-const TEXT_ALIGN_LEFT: i32 = 0
-const TEXT_ALIGN_CENTER: i32 = 1
-const TEXT_ALIGN_RIGHT: i32 = 2
-const TEXT_ALIGN_TOP: i32 = 0
-const TEXT_ALIGN_MIDDLE: i32 = 1
-const TEXT_ALIGN_BOTTOM: i32 = 2
-const TEXT_WRAP_NONE: i32 = 0
-const TEXT_WRAP_CHAR: i32 = 1
-const TEXT_WRAP_WORD: i32 = 2
-const DEFAULT: i32 = 0
-const LABEL: i32 = 1
-const BUTTON: i32 = 2
-const TOGGLE: i32 = 3
-const SLIDER: i32 = 4
-const PROGRESSBAR: i32 = 5
-const CHECKBOX: i32 = 6
-const COMBOBOX: i32 = 7
-const DROPDOWNBOX: i32 = 8
-const TEXTBOX: i32 = 9
-const VALUEBOX: i32 = 10
-const SPINNER: i32 = 11
-const LISTVIEW: i32 = 12
-const COLORPICKER: i32 = 13
-const SCROLLBAR: i32 = 14
-const STATUSBAR: i32 = 15
-const BORDER_COLOR_NORMAL: i32 = 0
-const BASE_COLOR_NORMAL: i32 = 1
-const TEXT_COLOR_NORMAL: i32 = 2
-const BORDER_COLOR_FOCUSED: i32 = 3
-const BASE_COLOR_FOCUSED: i32 = 4
-const TEXT_COLOR_FOCUSED: i32 = 5
-const BORDER_COLOR_PRESSED: i32 = 6
-const BASE_COLOR_PRESSED: i32 = 7
-const TEXT_COLOR_PRESSED: i32 = 8
-const BORDER_COLOR_DISABLED: i32 = 9
-const BASE_COLOR_DISABLED: i32 = 10
-const TEXT_COLOR_DISABLED: i32 = 11
-const BORDER_WIDTH: i32 = 12
-const TEXT_PADDING: i32 = 13
-const TEXT_ALIGNMENT: i32 = 14
-const TEXT_SIZE: i32 = 16
-const TEXT_SPACING: i32 = 17
-const LINE_COLOR: i32 = 18
-const BACKGROUND_COLOR: i32 = 19
-const TEXT_LINE_SPACING: i32 = 20
-const TEXT_ALIGNMENT_VERTICAL: i32 = 21
-const TEXT_WRAP_MODE: i32 = 22
-const GROUP_PADDING: i32 = 16
-const SLIDER_WIDTH: i32 = 16
-const SLIDER_PADDING: i32 = 17
-const PROGRESS_PADDING: i32 = 16
-const ARROWS_SIZE: i32 = 16
-const ARROWS_VISIBLE: i32 = 17
-const SCROLL_SLIDER_PADDING: i32 = 18
-const SCROLL_SLIDER_SIZE: i32 = 19
-const SCROLL_PADDING: i32 = 20
-const SCROLL_SPEED: i32 = 21
-const CHECK_PADDING: i32 = 16
-const COMBO_BUTTON_WIDTH: i32 = 16
-const COMBO_BUTTON_SPACING: i32 = 17
-const ARROW_PADDING: i32 = 16
-const DROPDOWN_ITEMS_SPACING: i32 = 17
-const TEXT_READONLY: i32 = 16
-const SPIN_BUTTON_WIDTH: i32 = 16
-const SPIN_BUTTON_SPACING: i32 = 17
-const LIST_ITEMS_HEIGHT: i32 = 16
-const LIST_ITEMS_SPACING: i32 = 17
-const SCROLLBAR_WIDTH: i32 = 18
-const SCROLLBAR_SIDE: i32 = 19
-const COLOR_SELECTOR_SIZE: i32 = 16
-const HUEBAR_WIDTH: i32 = 17
-const HUEBAR_PADDING: i32 = 18
-const HUEBAR_SELECTOR_HEIGHT: i32 = 19
-const HUEBAR_SELECTOR_OVERFLOW: i32 = 20
-const ICON_NONE: i32 = 0
-const ICON_FOLDER_FILE_OPEN: i32 = 1
-const ICON_FILE_SAVE_CLASSIC: i32 = 2
-const ICON_FOLDER_OPEN: i32 = 3
-const ICON_FOLDER_SAVE: i32 = 4
-const ICON_FILE_OPEN: i32 = 5
-const ICON_FILE_SAVE: i32 = 6
-const ICON_FILE_EXPORT: i32 = 7
-const ICON_FILE_ADD: i32 = 8
-const ICON_FILE_DELETE: i32 = 9
-const ICON_FILETYPE_TEXT: i32 = 10
-const ICON_FILETYPE_AUDIO: i32 = 11
-const ICON_FILETYPE_IMAGE: i32 = 12
-const ICON_FILETYPE_PLAY: i32 = 13
-const ICON_FILETYPE_VIDEO: i32 = 14
-const ICON_FILETYPE_INFO: i32 = 15
-const ICON_FILE_COPY: i32 = 16
-const ICON_FILE_CUT: i32 = 17
-const ICON_FILE_PASTE: i32 = 18
-const ICON_CURSOR_HAND: i32 = 19
-const ICON_CURSOR_POINTER: i32 = 20
-const ICON_CURSOR_CLASSIC: i32 = 21
-const ICON_PENCIL: i32 = 22
-const ICON_PENCIL_BIG: i32 = 23
-const ICON_BRUSH_CLASSIC: i32 = 24
-const ICON_BRUSH_PAINTER: i32 = 25
-const ICON_WATER_DROP: i32 = 26
-const ICON_COLOR_PICKER: i32 = 27
-const ICON_RUBBER: i32 = 28
-const ICON_COLOR_BUCKET: i32 = 29
-const ICON_TEXT_T: i32 = 30
-const ICON_TEXT_A: i32 = 31
-const ICON_SCALE: i32 = 32
-const ICON_RESIZE: i32 = 33
-const ICON_FILTER_POINT: i32 = 34
-const ICON_FILTER_BILINEAR: i32 = 35
-const ICON_CROP: i32 = 36
-const ICON_CROP_ALPHA: i32 = 37
-const ICON_SQUARE_TOGGLE: i32 = 38
-const ICON_SYMMETRY: i32 = 39
-const ICON_SYMMETRY_HORIZONTAL: i32 = 40
-const ICON_SYMMETRY_VERTICAL: i32 = 41
-const ICON_LENS: i32 = 42
-const ICON_LENS_BIG: i32 = 43
-const ICON_EYE_ON: i32 = 44
-const ICON_EYE_OFF: i32 = 45
-const ICON_FILTER_TOP: i32 = 46
-const ICON_FILTER: i32 = 47
-const ICON_TARGET_POINT: i32 = 48
-const ICON_TARGET_SMALL: i32 = 49
-const ICON_TARGET_BIG: i32 = 50
-const ICON_TARGET_MOVE: i32 = 51
-const ICON_CURSOR_MOVE: i32 = 52
-const ICON_CURSOR_SCALE: i32 = 53
-const ICON_CURSOR_SCALE_RIGHT: i32 = 54
-const ICON_CURSOR_SCALE_LEFT: i32 = 55
-const ICON_UNDO: i32 = 56
-const ICON_REDO: i32 = 57
-const ICON_REREDO: i32 = 58
-const ICON_MUTATE: i32 = 59
-const ICON_ROTATE: i32 = 60
-const ICON_REPEAT: i32 = 61
-const ICON_SHUFFLE: i32 = 62
-const ICON_EMPTYBOX: i32 = 63
-const ICON_TARGET: i32 = 64
-const ICON_TARGET_SMALL_FILL: i32 = 65
-const ICON_TARGET_BIG_FILL: i32 = 66
-const ICON_TARGET_MOVE_FILL: i32 = 67
-const ICON_CURSOR_MOVE_FILL: i32 = 68
-const ICON_CURSOR_SCALE_FILL: i32 = 69
-const ICON_CURSOR_SCALE_RIGHT_FILL: i32 = 70
-const ICON_CURSOR_SCALE_LEFT_FILL: i32 = 71
-const ICON_UNDO_FILL: i32 = 72
-const ICON_REDO_FILL: i32 = 73
-const ICON_REREDO_FILL: i32 = 74
-const ICON_MUTATE_FILL: i32 = 75
-const ICON_ROTATE_FILL: i32 = 76
-const ICON_REPEAT_FILL: i32 = 77
-const ICON_SHUFFLE_FILL: i32 = 78
-const ICON_EMPTYBOX_SMALL: i32 = 79
-const ICON_BOX: i32 = 80
-const ICON_BOX_TOP: i32 = 81
-const ICON_BOX_TOP_RIGHT: i32 = 82
-const ICON_BOX_RIGHT: i32 = 83
-const ICON_BOX_BOTTOM_RIGHT: i32 = 84
-const ICON_BOX_BOTTOM: i32 = 85
-const ICON_BOX_BOTTOM_LEFT: i32 = 86
-const ICON_BOX_LEFT: i32 = 87
-const ICON_BOX_TOP_LEFT: i32 = 88
-const ICON_BOX_CENTER: i32 = 89
-const ICON_BOX_CIRCLE_MASK: i32 = 90
-const ICON_POT: i32 = 91
-const ICON_ALPHA_MULTIPLY: i32 = 92
-const ICON_ALPHA_CLEAR: i32 = 93
-const ICON_DITHERING: i32 = 94
-const ICON_MIPMAPS: i32 = 95
-const ICON_BOX_GRID: i32 = 96
-const ICON_GRID: i32 = 97
-const ICON_BOX_CORNERS_SMALL: i32 = 98
-const ICON_BOX_CORNERS_BIG: i32 = 99
-const ICON_FOUR_BOXES: i32 = 100
-const ICON_GRID_FILL: i32 = 101
-const ICON_BOX_MULTISIZE: i32 = 102
-const ICON_ZOOM_SMALL: i32 = 103
-const ICON_ZOOM_MEDIUM: i32 = 104
-const ICON_ZOOM_BIG: i32 = 105
-const ICON_ZOOM_ALL: i32 = 106
-const ICON_ZOOM_CENTER: i32 = 107
-const ICON_BOX_DOTS_SMALL: i32 = 108
-const ICON_BOX_DOTS_BIG: i32 = 109
-const ICON_BOX_CONCENTRIC: i32 = 110
-const ICON_BOX_GRID_BIG: i32 = 111
-const ICON_OK_TICK: i32 = 112
-const ICON_CROSS: i32 = 113
-const ICON_ARROW_LEFT: i32 = 114
-const ICON_ARROW_RIGHT: i32 = 115
-const ICON_ARROW_DOWN: i32 = 116
-const ICON_ARROW_UP: i32 = 117
-const ICON_ARROW_LEFT_FILL: i32 = 118
-const ICON_ARROW_RIGHT_FILL: i32 = 119
-const ICON_ARROW_DOWN_FILL: i32 = 120
-const ICON_ARROW_UP_FILL: i32 = 121
-const ICON_AUDIO: i32 = 122
-const ICON_FX: i32 = 123
-const ICON_WAVE: i32 = 124
-const ICON_WAVE_SINUS: i32 = 125
-const ICON_WAVE_SQUARE: i32 = 126
-const ICON_WAVE_TRIANGULAR: i32 = 127
-const ICON_CROSS_SMALL: i32 = 128
-const ICON_PLAYER_PREVIOUS: i32 = 129
-const ICON_PLAYER_PLAY_BACK: i32 = 130
-const ICON_PLAYER_PLAY: i32 = 131
-const ICON_PLAYER_PAUSE: i32 = 132
-const ICON_PLAYER_STOP: i32 = 133
-const ICON_PLAYER_NEXT: i32 = 134
-const ICON_PLAYER_RECORD: i32 = 135
-const ICON_MAGNET: i32 = 136
-const ICON_LOCK_CLOSE: i32 = 137
-const ICON_LOCK_OPEN: i32 = 138
-const ICON_CLOCK: i32 = 139
-const ICON_TOOLS: i32 = 140
-const ICON_GEAR: i32 = 141
-const ICON_GEAR_BIG: i32 = 142
-const ICON_BIN: i32 = 143
-const ICON_HAND_POINTER: i32 = 144
-const ICON_LASER: i32 = 145
-const ICON_COIN: i32 = 146
-const ICON_EXPLOSION: i32 = 147
-const ICON_1UP: i32 = 148
-const ICON_PLAYER: i32 = 149
-const ICON_PLAYER_JUMP: i32 = 150
-const ICON_KEY: i32 = 151
-const ICON_DEMON: i32 = 152
-const ICON_TEXT_POPUP: i32 = 153
-const ICON_GEAR_EX: i32 = 154
-const ICON_CRACK: i32 = 155
-const ICON_CRACK_POINTS: i32 = 156
-const ICON_STAR: i32 = 157
-const ICON_DOOR: i32 = 158
-const ICON_EXIT: i32 = 159
-const ICON_MODE_2D: i32 = 160
-const ICON_MODE_3D: i32 = 161
-const ICON_CUBE: i32 = 162
-const ICON_CUBE_FACE_TOP: i32 = 163
-const ICON_CUBE_FACE_LEFT: i32 = 164
-const ICON_CUBE_FACE_FRONT: i32 = 165
-const ICON_CUBE_FACE_BOTTOM: i32 = 166
-const ICON_CUBE_FACE_RIGHT: i32 = 167
-const ICON_CUBE_FACE_BACK: i32 = 168
-const ICON_CAMERA: i32 = 169
-const ICON_SPECIAL: i32 = 170
-const ICON_LINK_NET: i32 = 171
-const ICON_LINK_BOXES: i32 = 172
-const ICON_LINK_MULTI: i32 = 173
-const ICON_LINK: i32 = 174
-const ICON_LINK_BROKE: i32 = 175
-const ICON_TEXT_NOTES: i32 = 176
-const ICON_NOTEBOOK: i32 = 177
-const ICON_SUITCASE: i32 = 178
-const ICON_SUITCASE_ZIP: i32 = 179
-const ICON_MAILBOX: i32 = 180
-const ICON_MONITOR: i32 = 181
-const ICON_PRINTER: i32 = 182
-const ICON_PHOTO_CAMERA: i32 = 183
-const ICON_PHOTO_CAMERA_FLASH: i32 = 184
-const ICON_HOUSE: i32 = 185
-const ICON_HEART: i32 = 186
-const ICON_CORNER: i32 = 187
-const ICON_VERTICAL_BARS: i32 = 188
-const ICON_VERTICAL_BARS_FILL: i32 = 189
-const ICON_LIFE_BARS: i32 = 190
-const ICON_INFO: i32 = 191
-const ICON_CROSSLINE: i32 = 192
-const ICON_HELP: i32 = 193
-const ICON_FILETYPE_ALPHA: i32 = 194
-const ICON_FILETYPE_HOME: i32 = 195
-const ICON_LAYERS_VISIBLE: i32 = 196
-const ICON_LAYERS: i32 = 197
-const ICON_WINDOW: i32 = 198
-const ICON_HIDPI: i32 = 199
-const ICON_FILETYPE_BINARY: i32 = 200
-const ICON_HEX: i32 = 201
-const ICON_SHIELD: i32 = 202
-const ICON_FILE_NEW: i32 = 203
-const ICON_FOLDER_ADD: i32 = 204
-const ICON_ALARM: i32 = 205
-const ICON_CPU: i32 = 206
-const ICON_ROM: i32 = 207
-const ICON_STEP_OVER: i32 = 208
-const ICON_STEP_INTO: i32 = 209
-const ICON_STEP_OUT: i32 = 210
-const ICON_RESTART: i32 = 211
-const ICON_BREAKPOINT_ON: i32 = 212
-const ICON_BREAKPOINT_OFF: i32 = 213
-const ICON_BURGER_MENU: i32 = 214
-const ICON_CASE_SENSITIVE: i32 = 215
-const ICON_REG_EXP: i32 = 216
-const ICON_FOLDER: i32 = 217
-const ICON_FILE: i32 = 218
-const ICON_SAND_TIMER: i32 = 219
-const ICON_WARNING: i32 = 220
-const ICON_HELP_BOX: i32 = 221
-const ICON_INFO_BOX: i32 = 222
-const ICON_223: i32 = 223
-const ICON_224: i32 = 224
-const ICON_225: i32 = 225
-const ICON_226: i32 = 226
-const ICON_227: i32 = 227
-const ICON_228: i32 = 228
-const ICON_229: i32 = 229
-const ICON_230: i32 = 230
-const ICON_231: i32 = 231
-const ICON_232: i32 = 232
-const ICON_233: i32 = 233
-const ICON_234: i32 = 234
-const ICON_235: i32 = 235
-const ICON_236: i32 = 236
-const ICON_237: i32 = 237
-const ICON_238: i32 = 238
-const ICON_239: i32 = 239
-const ICON_240: i32 = 240
-const ICON_241: i32 = 241
-const ICON_242: i32 = 242
-const ICON_243: i32 = 243
-const ICON_244: i32 = 244
-const ICON_245: i32 = 245
-const ICON_246: i32 = 246
-const ICON_247: i32 = 247
-const ICON_248: i32 = 248
-const ICON_249: i32 = 249
-const ICON_250: i32 = 250
-const ICON_251: i32 = 251
-const ICON_252: i32 = 252
-const ICON_253: i32 = 253
-const ICON_254: i32 = 254
-const ICON_255: i32 = 255
+[extern] const STATE_NORMAL: i32
+[extern] const STATE_FOCUSED: i32
+[extern] const STATE_PRESSED: i32
+[extern] const STATE_DISABLED: i32
+[extern] const TEXT_ALIGN_LEFT: i32
+[extern] const TEXT_ALIGN_CENTER: i32
+[extern] const TEXT_ALIGN_RIGHT: i32
+[extern] const TEXT_ALIGN_TOP: i32
+[extern] const TEXT_ALIGN_MIDDLE: i32
+[extern] const TEXT_ALIGN_BOTTOM: i32
+[extern] const TEXT_WRAP_NONE: i32
+[extern] const TEXT_WRAP_CHAR: i32
+[extern] const TEXT_WRAP_WORD: i32
+[extern] const DEFAULT: i32
+[extern] const LABEL: i32
+[extern] const BUTTON: i32
+[extern] const TOGGLE: i32
+[extern] const SLIDER: i32
+[extern] const PROGRESSBAR: i32
+[extern] const CHECKBOX: i32
+[extern] const COMBOBOX: i32
+[extern] const DROPDOWNBOX: i32
+[extern] const TEXTBOX: i32
+[extern] const VALUEBOX: i32
+[extern] const SPINNER: i32
+[extern] const LISTVIEW: i32
+[extern] const COLORPICKER: i32
+[extern] const SCROLLBAR: i32
+[extern] const STATUSBAR: i32
+[extern] const BORDER_COLOR_NORMAL: i32
+[extern] const BASE_COLOR_NORMAL: i32
+[extern] const TEXT_COLOR_NORMAL: i32
+[extern] const BORDER_COLOR_FOCUSED: i32
+[extern] const BASE_COLOR_FOCUSED: i32
+[extern] const TEXT_COLOR_FOCUSED: i32
+[extern] const BORDER_COLOR_PRESSED: i32
+[extern] const BASE_COLOR_PRESSED: i32
+[extern] const TEXT_COLOR_PRESSED: i32
+[extern] const BORDER_COLOR_DISABLED: i32
+[extern] const BASE_COLOR_DISABLED: i32
+[extern] const TEXT_COLOR_DISABLED: i32
+[extern] const BORDER_WIDTH: i32
+[extern] const TEXT_PADDING: i32
+[extern] const TEXT_ALIGNMENT: i32
+[extern] const TEXT_SIZE: i32
+[extern] const TEXT_SPACING: i32
+[extern] const LINE_COLOR: i32
+[extern] const BACKGROUND_COLOR: i32
+[extern] const TEXT_LINE_SPACING: i32
+[extern] const TEXT_ALIGNMENT_VERTICAL: i32
+[extern] const TEXT_WRAP_MODE: i32
+[extern] const GROUP_PADDING: i32
+[extern] const SLIDER_WIDTH: i32
+[extern] const SLIDER_PADDING: i32
+[extern] const PROGRESS_PADDING: i32
+[extern] const ARROWS_SIZE: i32
+[extern] const ARROWS_VISIBLE: i32
+[extern] const SCROLL_SLIDER_PADDING: i32
+[extern] const SCROLL_SLIDER_SIZE: i32
+[extern] const SCROLL_PADDING: i32
+[extern] const SCROLL_SPEED: i32
+[extern] const CHECK_PADDING: i32
+[extern] const COMBO_BUTTON_WIDTH: i32
+[extern] const COMBO_BUTTON_SPACING: i32
+[extern] const ARROW_PADDING: i32
+[extern] const DROPDOWN_ITEMS_SPACING: i32
+[extern] const TEXT_READONLY: i32
+[extern] const SPIN_BUTTON_WIDTH: i32
+[extern] const SPIN_BUTTON_SPACING: i32
+[extern] const LIST_ITEMS_HEIGHT: i32
+[extern] const LIST_ITEMS_SPACING: i32
+[extern] const SCROLLBAR_WIDTH: i32
+[extern] const SCROLLBAR_SIDE: i32
+[extern] const COLOR_SELECTOR_SIZE: i32
+[extern] const HUEBAR_WIDTH: i32
+[extern] const HUEBAR_PADDING: i32
+[extern] const HUEBAR_SELECTOR_HEIGHT: i32
+[extern] const HUEBAR_SELECTOR_OVERFLOW: i32
+[extern] const ICON_NONE: i32
+[extern] const ICON_FOLDER_FILE_OPEN: i32
+[extern] const ICON_FILE_SAVE_CLASSIC: i32
+[extern] const ICON_FOLDER_OPEN: i32
+[extern] const ICON_FOLDER_SAVE: i32
+[extern] const ICON_FILE_OPEN: i32
+[extern] const ICON_FILE_SAVE: i32
+[extern] const ICON_FILE_EXPORT: i32
+[extern] const ICON_FILE_ADD: i32
+[extern] const ICON_FILE_DELETE: i32
+[extern] const ICON_FILETYPE_TEXT: i32
+[extern] const ICON_FILETYPE_AUDIO: i32
+[extern] const ICON_FILETYPE_IMAGE: i32
+[extern] const ICON_FILETYPE_PLAY: i32
+[extern] const ICON_FILETYPE_VIDEO: i32
+[extern] const ICON_FILETYPE_INFO: i32
+[extern] const ICON_FILE_COPY: i32
+[extern] const ICON_FILE_CUT: i32
+[extern] const ICON_FILE_PASTE: i32
+[extern] const ICON_CURSOR_HAND: i32
+[extern] const ICON_CURSOR_POINTER: i32
+[extern] const ICON_CURSOR_CLASSIC: i32
+[extern] const ICON_PENCIL: i32
+[extern] const ICON_PENCIL_BIG: i32
+[extern] const ICON_BRUSH_CLASSIC: i32
+[extern] const ICON_BRUSH_PAINTER: i32
+[extern] const ICON_WATER_DROP: i32
+[extern] const ICON_COLOR_PICKER: i32
+[extern] const ICON_RUBBER: i32
+[extern] const ICON_COLOR_BUCKET: i32
+[extern] const ICON_TEXT_T: i32
+[extern] const ICON_TEXT_A: i32
+[extern] const ICON_SCALE: i32
+[extern] const ICON_RESIZE: i32
+[extern] const ICON_FILTER_POINT: i32
+[extern] const ICON_FILTER_BILINEAR: i32
+[extern] const ICON_CROP: i32
+[extern] const ICON_CROP_ALPHA: i32
+[extern] const ICON_SQUARE_TOGGLE: i32
+[extern] const ICON_SYMMETRY: i32
+[extern] const ICON_SYMMETRY_HORIZONTAL: i32
+[extern] const ICON_SYMMETRY_VERTICAL: i32
+[extern] const ICON_LENS: i32
+[extern] const ICON_LENS_BIG: i32
+[extern] const ICON_EYE_ON: i32
+[extern] const ICON_EYE_OFF: i32
+[extern] const ICON_FILTER_TOP: i32
+[extern] const ICON_FILTER: i32
+[extern] const ICON_TARGET_POINT: i32
+[extern] const ICON_TARGET_SMALL: i32
+[extern] const ICON_TARGET_BIG: i32
+[extern] const ICON_TARGET_MOVE: i32
+[extern] const ICON_CURSOR_MOVE: i32
+[extern] const ICON_CURSOR_SCALE: i32
+[extern] const ICON_CURSOR_SCALE_RIGHT: i32
+[extern] const ICON_CURSOR_SCALE_LEFT: i32
+[extern] const ICON_UNDO: i32
+[extern] const ICON_REDO: i32
+[extern] const ICON_REREDO: i32
+[extern] const ICON_MUTATE: i32
+[extern] const ICON_ROTATE: i32
+[extern] const ICON_REPEAT: i32
+[extern] const ICON_SHUFFLE: i32
+[extern] const ICON_EMPTYBOX: i32
+[extern] const ICON_TARGET: i32
+[extern] const ICON_TARGET_SMALL_FILL: i32
+[extern] const ICON_TARGET_BIG_FILL: i32
+[extern] const ICON_TARGET_MOVE_FILL: i32
+[extern] const ICON_CURSOR_MOVE_FILL: i32
+[extern] const ICON_CURSOR_SCALE_FILL: i32
+[extern] const ICON_CURSOR_SCALE_RIGHT_FILL: i32
+[extern] const ICON_CURSOR_SCALE_LEFT_FILL: i32
+[extern] const ICON_UNDO_FILL: i32
+[extern] const ICON_REDO_FILL: i32
+[extern] const ICON_REREDO_FILL: i32
+[extern] const ICON_MUTATE_FILL: i32
+[extern] const ICON_ROTATE_FILL: i32
+[extern] const ICON_REPEAT_FILL: i32
+[extern] const ICON_SHUFFLE_FILL: i32
+[extern] const ICON_EMPTYBOX_SMALL: i32
+[extern] const ICON_BOX: i32
+[extern] const ICON_BOX_TOP: i32
+[extern] const ICON_BOX_TOP_RIGHT: i32
+[extern] const ICON_BOX_RIGHT: i32
+[extern] const ICON_BOX_BOTTOM_RIGHT: i32
+[extern] const ICON_BOX_BOTTOM: i32
+[extern] const ICON_BOX_BOTTOM_LEFT: i32
+[extern] const ICON_BOX_LEFT: i32
+[extern] const ICON_BOX_TOP_LEFT: i32
+[extern] const ICON_BOX_CENTER: i32
+[extern] const ICON_BOX_CIRCLE_MASK: i32
+[extern] const ICON_POT: i32
+[extern] const ICON_ALPHA_MULTIPLY: i32
+[extern] const ICON_ALPHA_CLEAR: i32
+[extern] const ICON_DITHERING: i32
+[extern] const ICON_MIPMAPS: i32
+[extern] const ICON_BOX_GRID: i32
+[extern] const ICON_GRID: i32
+[extern] const ICON_BOX_CORNERS_SMALL: i32
+[extern] const ICON_BOX_CORNERS_BIG: i32
+[extern] const ICON_FOUR_BOXES: i32
+[extern] const ICON_GRID_FILL: i32
+[extern] const ICON_BOX_MULTISIZE: i32
+[extern] const ICON_ZOOM_SMALL: i32
+[extern] const ICON_ZOOM_MEDIUM: i32
+[extern] const ICON_ZOOM_BIG: i32
+[extern] const ICON_ZOOM_ALL: i32
+[extern] const ICON_ZOOM_CENTER: i32
+[extern] const ICON_BOX_DOTS_SMALL: i32
+[extern] const ICON_BOX_DOTS_BIG: i32
+[extern] const ICON_BOX_CONCENTRIC: i32
+[extern] const ICON_BOX_GRID_BIG: i32
+[extern] const ICON_OK_TICK: i32
+[extern] const ICON_CROSS: i32
+[extern] const ICON_ARROW_LEFT: i32
+[extern] const ICON_ARROW_RIGHT: i32
+[extern] const ICON_ARROW_DOWN: i32
+[extern] const ICON_ARROW_UP: i32
+[extern] const ICON_ARROW_LEFT_FILL: i32
+[extern] const ICON_ARROW_RIGHT_FILL: i32
+[extern] const ICON_ARROW_DOWN_FILL: i32
+[extern] const ICON_ARROW_UP_FILL: i32
+[extern] const ICON_AUDIO: i32
+[extern] const ICON_FX: i32
+[extern] const ICON_WAVE: i32
+[extern] const ICON_WAVE_SINUS: i32
+[extern] const ICON_WAVE_SQUARE: i32
+[extern] const ICON_WAVE_TRIANGULAR: i32
+[extern] const ICON_CROSS_SMALL: i32
+[extern] const ICON_PLAYER_PREVIOUS: i32
+[extern] const ICON_PLAYER_PLAY_BACK: i32
+[extern] const ICON_PLAYER_PLAY: i32
+[extern] const ICON_PLAYER_PAUSE: i32
+[extern] const ICON_PLAYER_STOP: i32
+[extern] const ICON_PLAYER_NEXT: i32
+[extern] const ICON_PLAYER_RECORD: i32
+[extern] const ICON_MAGNET: i32
+[extern] const ICON_LOCK_CLOSE: i32
+[extern] const ICON_LOCK_OPEN: i32
+[extern] const ICON_CLOCK: i32
+[extern] const ICON_TOOLS: i32
+[extern] const ICON_GEAR: i32
+[extern] const ICON_GEAR_BIG: i32
+[extern] const ICON_BIN: i32
+[extern] const ICON_HAND_POINTER: i32
+[extern] const ICON_LASER: i32
+[extern] const ICON_COIN: i32
+[extern] const ICON_EXPLOSION: i32
+[extern] const ICON_1UP: i32
+[extern] const ICON_PLAYER: i32
+[extern] const ICON_PLAYER_JUMP: i32
+[extern] const ICON_KEY: i32
+[extern] const ICON_DEMON: i32
+[extern] const ICON_TEXT_POPUP: i32
+[extern] const ICON_GEAR_EX: i32
+[extern] const ICON_CRACK: i32
+[extern] const ICON_CRACK_POINTS: i32
+[extern] const ICON_STAR: i32
+[extern] const ICON_DOOR: i32
+[extern] const ICON_EXIT: i32
+[extern] const ICON_MODE_2D: i32
+[extern] const ICON_MODE_3D: i32
+[extern] const ICON_CUBE: i32
+[extern] const ICON_CUBE_FACE_TOP: i32
+[extern] const ICON_CUBE_FACE_LEFT: i32
+[extern] const ICON_CUBE_FACE_FRONT: i32
+[extern] const ICON_CUBE_FACE_BOTTOM: i32
+[extern] const ICON_CUBE_FACE_RIGHT: i32
+[extern] const ICON_CUBE_FACE_BACK: i32
+[extern] const ICON_CAMERA: i32
+[extern] const ICON_SPECIAL: i32
+[extern] const ICON_LINK_NET: i32
+[extern] const ICON_LINK_BOXES: i32
+[extern] const ICON_LINK_MULTI: i32
+[extern] const ICON_LINK: i32
+[extern] const ICON_LINK_BROKE: i32
+[extern] const ICON_TEXT_NOTES: i32
+[extern] const ICON_NOTEBOOK: i32
+[extern] const ICON_SUITCASE: i32
+[extern] const ICON_SUITCASE_ZIP: i32
+[extern] const ICON_MAILBOX: i32
+[extern] const ICON_MONITOR: i32
+[extern] const ICON_PRINTER: i32
+[extern] const ICON_PHOTO_CAMERA: i32
+[extern] const ICON_PHOTO_CAMERA_FLASH: i32
+[extern] const ICON_HOUSE: i32
+[extern] const ICON_HEART: i32
+[extern] const ICON_CORNER: i32
+[extern] const ICON_VERTICAL_BARS: i32
+[extern] const ICON_VERTICAL_BARS_FILL: i32
+[extern] const ICON_LIFE_BARS: i32
+[extern] const ICON_INFO: i32
+[extern] const ICON_CROSSLINE: i32
+[extern] const ICON_HELP: i32
+[extern] const ICON_FILETYPE_ALPHA: i32
+[extern] const ICON_FILETYPE_HOME: i32
+[extern] const ICON_LAYERS_VISIBLE: i32
+[extern] const ICON_LAYERS: i32
+[extern] const ICON_WINDOW: i32
+[extern] const ICON_HIDPI: i32
+[extern] const ICON_FILETYPE_BINARY: i32
+[extern] const ICON_HEX: i32
+[extern] const ICON_SHIELD: i32
+[extern] const ICON_FILE_NEW: i32
+[extern] const ICON_FOLDER_ADD: i32
+[extern] const ICON_ALARM: i32
+[extern] const ICON_CPU: i32
+[extern] const ICON_ROM: i32
+[extern] const ICON_STEP_OVER: i32
+[extern] const ICON_STEP_INTO: i32
+[extern] const ICON_STEP_OUT: i32
+[extern] const ICON_RESTART: i32
+[extern] const ICON_BREAKPOINT_ON: i32
+[extern] const ICON_BREAKPOINT_OFF: i32
+[extern] const ICON_BURGER_MENU: i32
+[extern] const ICON_CASE_SENSITIVE: i32
+[extern] const ICON_REG_EXP: i32
+[extern] const ICON_FOLDER: i32
+[extern] const ICON_FILE: i32
+[extern] const ICON_SAND_TIMER: i32
+[extern] const ICON_WARNING: i32
+[extern] const ICON_HELP_BOX: i32
+[extern] const ICON_INFO_BOX: i32
+[extern] const ICON_223: i32
+[extern] const ICON_224: i32
+[extern] const ICON_225: i32
+[extern] const ICON_226: i32
+[extern] const ICON_227: i32
+[extern] const ICON_228: i32
+[extern] const ICON_229: i32
+[extern] const ICON_230: i32
+[extern] const ICON_231: i32
+[extern] const ICON_232: i32
+[extern] const ICON_233: i32
+[extern] const ICON_234: i32
+[extern] const ICON_235: i32
+[extern] const ICON_236: i32
+[extern] const ICON_237: i32
+[extern] const ICON_238: i32
+[extern] const ICON_239: i32
+[extern] const ICON_240: i32
+[extern] const ICON_241: i32
+[extern] const ICON_242: i32
+[extern] const ICON_243: i32
+[extern] const ICON_244: i32
+[extern] const ICON_245: i32
+[extern] const ICON_246: i32
+[extern] const ICON_247: i32
+[extern] const ICON_248: i32
+[extern] const ICON_249: i32
+[extern] const ICON_250: i32
+[extern] const ICON_251: i32
+[extern] const ICON_252: i32
+[extern] const ICON_253: i32
+[extern] const ICON_254: i32
+[extern] const ICON_255: i32
 [extern] def GuiEnable(): u8
 [extern] def GuiDisable(): u8
 [extern] def GuiLock(): u8

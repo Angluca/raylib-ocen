@@ -1,7 +1,7 @@
 BUILD_DIR=./build
 
 SRC=core/$(DST).oc
-#DST=base_window2
+#DST=base_window
 #DST=smooth_pixelperfect
 #DST=loading_thread
 DST=3d_camera_first_person

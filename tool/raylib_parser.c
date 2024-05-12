@@ -2154,7 +2154,7 @@ static void ExportParsedData(const char *fileName, int format)
                 /*fprintf(outFile, "  Description: %s\n", enums[i].desc);*/
                 for (int e = 0; e < enums[i].valueCount; e++)
                     /*fprintf(outFile, "    %s = %i\n", enums[i].valueName[e], enums[i].valueInteger[e]);*/
-                    fprintf(outFile, "const %s: i32 = %i\n", enums[i].valueName[e], enums[i].valueInteger[e]);
+                    fprintf(outFile, "[extern] const %s: i32 = %i\n", enums[i].valueName[e], enums[i].valueInteger[e]);
 
                 /*fprintf(outFile, "}\n");*/
             }
