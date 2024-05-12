@@ -1,4 +1,8 @@
-import @raylib::*
+//import @raylib::*
+import @raylib::{ Vector2, Vector3, Color, Rectangle, Texture2D, Image, GlyphInfo, Font }
+import @raylib::{ KEY_RIGHT, KEY_LEFT, KEY_DOWN, KEY_UP, KEY_BACKSPACE, KEY_ENTER, MOUSE_LEFT_BUTTON }
+@compiler c_flag "-DRAYGUI_IMPLEMENTATION"
+@compiler c_include "raygui.h"
 
 [extern] const RAYGUI_VERSION_MAJOR: i32
 [extern] const RAYGUI_VERSION_MINOR: i32

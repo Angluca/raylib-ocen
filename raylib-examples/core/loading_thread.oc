@@ -25,6 +25,7 @@ enum State {
 def main() {
     //init
     SetExitKey(KEY_ESCAPE)
+    SetTraceLogLevel(LOG_WARNING);
     InitWindow(screen_width, screen_height, "loading_thread")
     defer CloseWindow()
     SetTargetFPS(60)

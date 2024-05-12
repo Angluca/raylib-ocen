@@ -1,4 +1,5 @@
-import @raylib::*
+import @raylib::{Camera, Vector3, Matrix}
+@compiler c_include "rcamera.h"
 
 [extern] const CAMERA_CULL_DISTANCE_NEAR: i32
 [extern] const CAMERA_CULL_DISTANCE_FAR: i32

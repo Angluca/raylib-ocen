@@ -1,5 +1,6 @@
-//import @raylib::{ Vector2, Vector3, Vector4, Matrix }
-import @raylib::*
+//import @raylib::*
+import @raylib::{ Vector2, Vector3, Vector4, Matrix }
+@compiler c_include "rlgl.h"
 
 [extern] const RLGL_VERSION: str
 [extern] const RL_DEFAULT_BATCH_BUFFER_ELEMENTS: i32
@@ -118,41 +119,177 @@ import @raylib::*
 [extern] const RL_DEFAULT_SHADER_SAMPLER2D_NAME_TEXTURE2: str
 
 [extern] struct rlVertexBuffer {
-    elementCount: i32           // Number of elements in the buffer (QUADS)
+    elementCount: i32
 
-    vertices: &f32            // Vertex position (XYZ - 3 components per vertex) (shader-location = 0)
-    texcoords: f32           // Vertex texture coordinates (UV - 2 components per vertex) (shader-location = 1)
-    colors: &u8      // Vertex colors (RGBA - 4 components per vertex) (shader-location = 3)
+    vertices: &f32
+    texcoords: f32
+    colors: &u8
 //#if defined(GRAPHICS_API_OPENGL_11) || defined(GRAPHICS_API_OPENGL_33)
-    indices: &u32    // Vertex indices (in case vertex data comes indexed) (6 indices per quad)
+    indices: &u32
 //#endif
 //#if defined(GRAPHICS_API_OPENGL_ES2)
-    //unsigned short *indices;    // Vertex indices (in case vertex data comes indexed) (6 indices per quad)
+    //unsigned short *indices;
 //#endif
-    vaoId: u32         // OpenGL Vertex Array Object id
-    vboId: [u32; 4]     // OpenGL Vertex Buffer Objects id (4 types of vertex data)
+    vaoId: u32
+    vboId: [u32; 4]
 }
 [extern] struct rlDrawCall {
-    mode: i32                   // Drawing mode: LINES, TRIANGLES, QUADS
-    vertexCount: i32            // Number of vertex of the draw
-    vertexAlignment: i32        // Number of vertex required for index alignment (LINES, TRIANGLES)
-    //unsigned int vaoId;       // Vertex array id to be used on the draw -> Using RLGL.currentBatch->vertexBuffer.vaoId
-    //unsigned int shaderId;    // Shader id to be used on the draw -> Using RLGL.currentShaderId
-    textureId: u32     // Texture id to be used on the draw -> Use to create new draw call if changes
+    mode: i32
+    vertexCount: i32
+    vertexAlignment: i32
+    //unsigned int vaoId;
+    //unsigned int shaderId;
+    textureId: u32
 
-    //Matrix projection;        // Projection matrix for this draw -> Using RLGL.projection by default
-    //Matrix modelview;         // Modelview matrix for this draw -> Using RLGL.modelview by default
+    //Matrix projection;
+    //Matrix modelview;
 }
 [extern] struct rlRenderBatch {
-    bufferCount: i32            // Number of vertex buffers (multi-buffering support)
-    currentBuffer: i32          // Current buffer tracking in case of multi-buffering
-    vertexBuffer: &rlVertexBuffer // Dynamic buffer(s) for vertex data
+    bufferCount: i32
+    currentBuffer: i32
+    vertexBuffer: &rlVertexBuffer
 
-    draws: &rlDrawCall          // Draw calls array, depends on textureId
-    drawCounter: i32            // Draw calls counter
-    currentDepth: f32         // Current depth value for next draw
+    draws: &rlDrawCall
+    drawCounter: i32
+    currentDepth: f32
+}
+[extern] enum rlGlVersion {
+    [extern] RL_OPENGL_11,
+    [extern] RL_OPENGL_21,
+    [extern] RL_OPENGL_33,
+    [extern] RL_OPENGL_43,
+    [extern] RL_OPENGL_ES_20,
+    [extern] RL_OPENGL_ES_30
 }
 
+[extern] enum rlTraceLogLevel {
+	[extern] RL_LOG_ALL,
+	[extern] RL_LOG_TRACE,
+	[extern] RL_LOG_DEBUG,
+	[extern] RL_LOG_INFO,
+	[extern] RL_LOG_WARNING,
+	[extern] RL_LOG_ERROR,
+	[extern] RL_LOG_FATAL,
+	[extern] RL_LOG_NONE
+}
+[extern] enum rlPixelFormat {
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_GRAYSCALE,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R5G6B5,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R5G5B5A1,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R4G4B4A4,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R32,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32A32,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R16,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16,
+	[extern] RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16A16,
+	[extern] RL_PIXELFORMAT_COMPRESSED_DXT1_RGB,
+	[extern] RL_PIXELFORMAT_COMPRESSED_DXT1_RGBA,
+	[extern] RL_PIXELFORMAT_COMPRESSED_DXT3_RGBA,
+	[extern] RL_PIXELFORMAT_COMPRESSED_DXT5_RGBA,
+	[extern] RL_PIXELFORMAT_COMPRESSED_ETC1_RGB,
+	[extern] RL_PIXELFORMAT_COMPRESSED_ETC2_RGB,
+	[extern] RL_PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA,
+	[extern] RL_PIXELFORMAT_COMPRESSED_PVRT_RGB,
+	[extern] RL_PIXELFORMAT_COMPRESSED_PVRT_RGBA,
+	[extern] RL_PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA,
+	[extern] RL_PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA
+}
+
+[extern] enum rlTextureFilter {
+	[extern] RL_TEXTURE_FILTER_POINT,
+	[extern] RL_TEXTURE_FILTER_BILINEAR,
+	[extern] RL_TEXTURE_FILTER_TRILINEAR,
+	[extern] RL_TEXTURE_FILTER_ANISOTROPIC_4X,
+	[extern] RL_TEXTURE_FILTER_ANISOTROPIC_8X,
+	[extern] RL_TEXTURE_FILTER_ANISOTROPIC_16X,
+}
+[extern] enum rlBlendMode {
+	[extern] RL_BLEND_ALPHA,
+	[extern] RL_BLEND_ADDITIVE,
+	[extern] RL_BLEND_MULTIPLIED,
+	[extern] RL_BLEND_ADD_COLORS,
+	[extern] RL_BLEND_SUBTRACT_COLORS,
+	[extern] RL_BLEND_ALPHA_PREMULTIPLY,
+	[extern] RL_BLEND_CUSTOM,
+	[extern] RL_BLEND_CUSTOM_SEPARATE
+}
+[extern] enum rlShaderLocationIndex {
+	[extern] RL_SHADER_LOC_VERTEX_POSITION,
+	[extern] RL_SHADER_LOC_VERTEX_TEXCOORD01,
+	[extern] RL_SHADER_LOC_VERTEX_TEXCOORD02,
+	[extern] RL_SHADER_LOC_VERTEX_NORMAL,
+	[extern] RL_SHADER_LOC_VERTEX_TANGENT,
+	[extern] RL_SHADER_LOC_VERTEX_COLOR,
+	[extern] RL_SHADER_LOC_MATRIX_MVP,
+	[extern] RL_SHADER_LOC_MATRIX_VIEW,
+	[extern] RL_SHADER_LOC_MATRIX_PROJECTION,
+	[extern] RL_SHADER_LOC_MATRIX_MODEL,
+	[extern] RL_SHADER_LOC_MATRIX_NORMAL,
+	[extern] RL_SHADER_LOC_VECTOR_VIEW,
+	[extern] RL_SHADER_LOC_COLOR_DIFFUSE,
+	[extern] RL_SHADER_LOC_COLOR_SPECULAR,
+	[extern] RL_SHADER_LOC_COLOR_AMBIENT,
+	[extern] RL_SHADER_LOC_MAP_ALBEDO,
+	[extern] RL_SHADER_LOC_MAP_METALNESS,
+	[extern] RL_SHADER_LOC_MAP_NORMAL,
+	[extern] RL_SHADER_LOC_MAP_ROUGHNESS,
+	[extern] RL_SHADER_LOC_MAP_OCCLUSION,
+	[extern] RL_SHADER_LOC_MAP_EMISSION,
+	[extern] RL_SHADER_LOC_MAP_HEIGHT,
+	[extern] RL_SHADER_LOC_MAP_CUBEMAP,
+	[extern] RL_SHADER_LOC_MAP_IRRADIANCE,
+	[extern] RL_SHADER_LOC_MAP_PREFILTER,
+	[extern] RL_SHADER_LOC_MAP_BRDF
+}
+[extern] const RL_SHADER_LOC_MAP_DIFFUSE: i32
+[extern] const RL_SHADER_LOC_MAP_SPECULAR: i32
+[extern] enum rlShaderUniformDataType {
+	[extern] RL_SHADER_UNIFORM_FLOAT,
+	[extern] RL_SHADER_UNIFORM_VEC2,
+	[extern] RL_SHADER_UNIFORM_VEC3,
+	[extern] RL_SHADER_UNIFORM_VEC4,
+	[extern] RL_SHADER_UNIFORM_INT,
+	[extern] RL_SHADER_UNIFORM_IVEC2,
+	[extern] RL_SHADER_UNIFORM_IVEC3,
+	[extern] RL_SHADER_UNIFORM_IVEC4,
+	[extern] RL_SHADER_UNIFORM_SAMPLER2D
+}
+[extern] enum rlShaderAttributeDataType {
+	[extern] RL_SHADER_ATTRIB_FLOAT,
+	[extern] RL_SHADER_ATTRIB_VEC2,
+	[extern] RL_SHADER_ATTRIB_VEC3,
+	[extern] RL_SHADER_ATTRIB_VEC4
+}
+[extern] enum rlFramebufferAttachType {
+	[extern] RL_ATTACHMENT_COLOR_CHANNEL0,
+	[extern] RL_ATTACHMENT_COLOR_CHANNEL1,
+	[extern] RL_ATTACHMENT_COLOR_CHANNEL2,
+	[extern] RL_ATTACHMENT_COLOR_CHANNEL3,
+	[extern] RL_ATTACHMENT_COLOR_CHANNEL4,
+	[extern] RL_ATTACHMENT_COLOR_CHANNEL5,
+	[extern] RL_ATTACHMENT_COLOR_CHANNEL6,
+	[extern] RL_ATTACHMENT_COLOR_CHANNEL7,
+	[extern] RL_ATTACHMENT_DEPTH,
+	[extern] RL_ATTACHMENT_STENCIL,
+}
+[extern] enum rlFramebufferAttachTextureType {
+	[extern] RL_ATTACHMENT_CUBEMAP_POSITIVE_X,
+	[extern] RL_ATTACHMENT_CUBEMAP_NEGATIVE_X,
+	[extern] RL_ATTACHMENT_CUBEMAP_POSITIVE_Y,
+	[extern] RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y,
+	[extern] RL_ATTACHMENT_CUBEMAP_POSITIVE_Z,
+	[extern] RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z,
+	[extern] RL_ATTACHMENT_TEXTURE2D,
+	[extern] RL_ATTACHMENT_RENDERBUFFER,
+}
+[extern] enum rlCullMode {
+	[extern] RL_CULL_FACE_FRONT,
+	[extern] RL_CULL_FACE_BACK
+}
 [extern] def rlMatrixMode(mode: i32): u8
 [extern] def rlPushMatrix(): u8
 [extern] def rlPopMatrix(): u8

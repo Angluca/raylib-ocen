@@ -9,6 +9,7 @@ const screen_height: i32 = 450
 
 def main() {
     SetExitKey(KEY_ESCAPE)
+    SetTraceLogLevel(LOG_WARNING);
     InitWindow(screen_width, screen_height, "base_window")
     defer CloseWindow()
     SetTargetFPS(60)
@@ -22,6 +23,13 @@ def main() {
     let v6 = v1 * v1
     let v7 = v1 / v1
     let v8 = Vector2DistanceSqr(v1, v2)
+    //typedef glx = rlGlVersion
+    let gl1 = rlGlVersion::RL_OPENGL_11
+    let gl2 = rlTraceLogLevel::RL_LOG_ALL
+    let gl3 = rlPixelFormat::RL_PIXELFORMAT_UNCOMPRESSED_GRAYSCALE
+    let gl4 = rlTextureFilter::RL_TEXTURE_FILTER_POINT
+    let gl5 = rlBlendMode::RL_BLEND_ALPHA
+    let gl6 = rlShaderLocationIndex::RL_SHADER_LOC_VERTEX_POSITION
 
     //loops --
     let dt: f32 = 0.0

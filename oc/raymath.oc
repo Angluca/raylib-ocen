@@ -1,6 +1,6 @@
-//import @raylib::{ Vector2, Vector3, Vector4, Matrix }
-import @raylib::*
-
+//import @raylib::*
+import @raylib::{ Vector2, Vector3, Vector4, Matrix, Quaternion }
+@compiler c_include "raymath.h"
 [extern] const EPSILON: f32
 //[extern "PI"] const PI_: f32
 //[extern] const DEG2RAD: f32

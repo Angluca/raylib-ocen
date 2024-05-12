@@ -3,7 +3,8 @@
 [extern] const RAYLIB_VERSION_PATCH: i32
 [extern] const RAYLIB_VERSION: str
 
-[extern "PI"] const PI_: f32
+//[extern "PI"] const PI: f32
+[extern] const PI: f32
 [extern] const DEG2RAD: f32
 [extern] const RAD2DEG: f32
 
@@ -405,6 +406,9 @@ typedef Camera = Camera3D
 [extern] const KEY_MENU: i32
 [extern] const KEY_VOLUME_UP: i32
 [extern] const KEY_VOLUME_DOWN: i32
+[extern] const MOUSE_LEFT_BUTTON: i32
+[extern] const MOUSE_RIGHT_BUTTON: i32
+[extern] const MOUSE_MIDDLE_BUTTON: i32
 [extern] const MOUSE_BUTTON_LEFT: i32
 [extern] const MOUSE_BUTTON_RIGHT: i32
 [extern] const MOUSE_BUTTON_MIDDLE: i32
