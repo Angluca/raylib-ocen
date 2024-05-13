@@ -6,10 +6,12 @@ SRC=core/$(DST).oc
 #DST=loading_thread
 DST=3d_camera_first_person
 
-OCEN_LIB=-l ..
-RAYLIB_INC=-I../c/include
-RAYLIB_LIB=-L../c/lib
-OC_LDFLAGS=$(RAYLIB_INC) $(RAYLIB_LIB)
+RAYLIB_OCEN=..
+RAYLIB_INC=-I$(RAYLIB_OCEN)/c/include
+RAYLIB_LIB=-L$(RAYLIB_OCEN)/c/lib
+
+OC_LDFLAGS+=$(RAYLIB_INC) $(RAYLIB_LIB)
+OCEN_LIB=-l $(RAYLIB_OCEN)
 #CFLAGS=-O3
 OC_CFLAGS=
 

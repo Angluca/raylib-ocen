@@ -3,10 +3,12 @@ BUILD_DIR=./build
 SRC=src/main.oc
 DST=mygame
 
-OCEN_LIB=-l ..
-RAYLIB_INC=-I../c/include
-RAYLIB_LIB=-L../c/lib
+RAYLIB_OCEN=..
+RAYLIB_INC=-I$(RAYLIB_OCEN)/c/include
+RAYLIB_LIB=-L$(RAYLIB_OCEN)/c/lib
+
 OC_LDFLAGS+=$(RAYLIB_INC) $(RAYLIB_LIB)
+OCEN_LIB=-l $(RAYLIB_OCEN)
 #OC_CFLAGS=-O3
 OC_CFLAGS=
 

@@ -1,15 +1,21 @@
 import @raylib::{Camera, Vector3, Matrix}
+
+//@compiler c_flag "-DRCAMERA_IMPLEMENTATION"
 @compiler c_include "rcamera.h"
 
-[extern] const CAMERA_CULL_DISTANCE_NEAR: i32
-[extern] const CAMERA_CULL_DISTANCE_FAR: i32
-
 //RCAMERA_IMPLEMENTATION
-[extern] const CAMERA_MOVE_SPEED: i32
-[extern] const CAMERA_ROTATION_SPEED: i32
-[extern] const CAMERA_PAN_SPEED: i32
-[extern] const CAMERA_MOUSE_MOVE_SENSITIVITY: i32
-[extern] const CAMERA_ORBITAL_SPEED: i32
+//[extern] const CAMERA_CULL_DISTANCE_NEAR: f32
+//[extern] const CAMERA_CULL_DISTANCE_FAR: f32
+//[extern] const CAMERA_MOVE_SPEED: f32
+//[extern] const CAMERA_ROTATION_SPEED: f32
+//[extern] const CAMERA_PAN_SPEED: f32
+//[extern] const CAMERA_MOUSE_MOVE_SENSITIVITY: f32
+//[extern] const CAMERA_ORBITAL_SPEED: f32
+const CAMERA_MOVE_SPEED: f32 = 0.09
+const CAMERA_ROTATION_SPEED: f32 = 0.03
+const CAMERA_PAN_SPEED: f32 = 0.2
+const CAMERA_MOUSE_MOVE_SENSITIVITY: f32 = 0.003
+const CAMERA_ORBITAL_SPEED: f32 = 0.5
 
 [extern] def GetCameraForward(camera: &Camera ): Vector3
 [extern] def GetCameraUp(camera: &Camera ): Vector3
